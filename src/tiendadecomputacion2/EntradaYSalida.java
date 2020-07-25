@@ -3,20 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tiendadecomputacion3;
+package tiendadecomputacion2;
 
 /**
  *
  * @author ariel
  */
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class EntradaYSalida {
       private static Scanner entrada = new Scanner(System.in); 
 
-   public EntradaYSalida()
+   private EntradaYSalida()
    {
-       //entrada = new Scanner(System.in);
    }
 
    /**
@@ -25,7 +25,6 @@ public class EntradaYSalida {
     */
    public static void mostrarMensaje(final String s)
    {
-       //entrada = new Scanner(System.in);    
        System.out.print(s);
    }
 
@@ -38,6 +37,7 @@ public class EntradaYSalida {
    {
        return entrada.nextLine();
    }
+
 
    /**
     * Lee la cantidad de stock del producto que ingresa
@@ -63,6 +63,7 @@ public class EntradaYSalida {
     */
    public static String leerOpcion()
    {
+       
        return entrada.nextLine();
    }
 
@@ -70,6 +71,26 @@ public class EntradaYSalida {
    {
        return entrada.nextLine();
    }
+  //----------------------------------------------------------- 
+     public static String leerCadena(String mensaje)
+    {
+        System.out.println(mensaje);
+       String entrada= new Scanner(System.in).nextLine();
+        return (entrada == null ? "" : entrada);
+    }
    
+    public static int leerDatoEntero(String mensaje)
+    {
+        System.out.println(mensaje);
+        return entrada.nextInt();
+    }   
+   
+    public static float leerDatoDouble(String mensaje) 
+    {
+        System.out.println(mensaje);
+        return (float) entrada.nextDouble();
+        
+    }
+     
  
 }

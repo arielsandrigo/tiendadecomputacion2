@@ -1,15 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package tiendadecomputacion3;
-
-/**
- *
- * @author ariel
- */
-import jdk.jfr.Description;
+package tiendadecomputacion2;
 
 public class FactoriaDeProductos 
 {
@@ -34,11 +23,13 @@ public class FactoriaDeProductos
     /**
      * @param productoID - final String
      * Método que se encarga instanciar una clase requerida.
+     * @param cantidadStock
+     * @param precioUnitario
      * @return p of type Producto
      * @throws ReflectiveOperationException
      */
-    public Producto crearProductos(final String productoID, int cantidadStock,double precioUnitario) throws ReflectiveOperationException
-	{
+    public Producto crearProducto(final String productoID, int cantidadStock,double precioUnitario) throws ReflectiveOperationException
+    {
 	    Producto p = null;
 	
 	    try
@@ -61,6 +52,7 @@ public class FactoriaDeProductos
             p.setCantidadStock(cantidadStock);
             p.setDescripcion(productoID);
             p.setPrecioUnitario(precioUnitario);
+            
         }
           
         return p;

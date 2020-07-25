@@ -3,16 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tiendadecomputacion3;
+package tiendadecomputacion2;
 
-/**
- *
- * @author ariel
- */
-public class Teclado extends Periferico
+
+public class Mouse extends Periferico 
 {
-
-    public Teclado() {
-    }
     
 }
