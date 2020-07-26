@@ -286,17 +286,13 @@ public class Duenio
         {
           tipo="Magnetico";
         }
-        if(tipo.equals("2"))
+        else if(tipo.equals("2"))
         {
-         tipo="SSD";     
+          tipo="SSD";     
         }
           
-     
-        capacidad=EntradaYSalida.leerDatoEntero("Ingresar la capacidad");
-	
-                
+        capacidad=EntradaYSalida.leerDatoEntero("Ingresar la capacidad");      
         tienda.setDisco(descripcion, cantidadStock, precioUnitario,marca,tipo,capacidad);
-        
         opcion=EntradaYSalida.leerCadena("\nDesea continuar[s/n]?: ");
 
         } while( opcion.equals("s") || opcion.equals("S"));
@@ -304,7 +300,6 @@ public class Duenio
 
     private void darDeAltaPlacaVideo()
     {
-    
         String fabricante;
         String modelo;
         int capacidadMemoria;
@@ -322,10 +317,8 @@ public class Duenio
         fabricante=EntradaYSalida.leerCadena("Ingresar el fabricante: ");          
         modelo=EntradaYSalida.leerCadena("Ingresar el modelo");
         capacidadMemoria=EntradaYSalida.leerDatoEntero("Ingresar la capacidad de memoria");
-	
-                
+	           
         tienda.setPlacaVideo(descripcion, cantidadStock, precioUnitario,fabricante,modelo,capacidadMemoria);
-        
         opcion=EntradaYSalida.leerCadena("\nDesea continuar[s/n]?: ");
 
         } while( opcion.equals("s") || opcion.equals("S"));

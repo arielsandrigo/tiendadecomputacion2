@@ -7,33 +7,51 @@ public class Tienda
     private final Producto producto = new Producto();
     private final ArrayList<Producto> listaProductos = new ArrayList<>();
 
-
     
-    public void setPeriferico(String descripcion, int cantidadStock, double precioUnitario,String tipo)
+    public void setPeriferico(String descripcion, int cantidadStock, double precioUnitario,
+                              String tipo)
     {  
-       this.listaProductos.add(producto.altaPeriferico(descripcion, cantidadStock,precioUnitario,tipo));   
+       this.listaProductos.add(producto.altaPeriferico(descripcion, cantidadStock,
+                                precioUnitario,tipo));   
     }
     
-    public void setRam(String descripcion, int cantidadStock, double precioUnitario,String marca,String tecnologia,
-                                                                            String frecuenciaMaxima, int capacidad)
+    public void setRam(String descripcion, int cantidadStock, double precioUnitario,
+                       String marca,String tecnologia,                                                                            String frecuenciaMaxima, int capacidad)
     { 
-       this.listaProductos.add(producto.altaRam(descripcion,cantidadStock,precioUnitario,marca,tecnologia,frecuenciaMaxima,capacidad));  
+       this.listaProductos.add(producto.altaRam(descripcion,cantidadStock,precioUnitario,
+                                marca,tecnologia,frecuenciaMaxima,capacidad));  
     }
     
-     public void setProcesador(String descripcion, int cantidadStock, double precioUnitario,String fabricante,String modelo,String frecuenciaMaxima)
+     public void setProcesador(String descripcion, int cantidadStock, double precioUnitario,
+                               String fabricante,String modelo,String frecuenciaMaxima)
     { 
-       this.listaProductos.add(producto.altaProcesador(descripcion,cantidadStock,precioUnitario,fabricante,modelo, frecuenciaMaxima));  
+       this.listaProductos.add(producto.altaProcesador(descripcion,cantidadStock,
+                            precioUnitario,fabricante,modelo, frecuenciaMaxima));  
     }
      
-      public void setDisco(String descripcion, int cantidadStock, double precioUnitario,String marca,String tipo,int capacidad)
+    public void setDisco(String descripcion, int cantidadStock, double precioUnitario,
+                         String marca,String tipo,int capacidad)
     { 
-       this.listaProductos.add(producto.altaDisco(descripcion,cantidadStock,precioUnitario,marca,tipo,capacidad));  
+       this.listaProductos.add(producto.altaDisco(descripcion,cantidadStock,precioUnitario,
+                                                  marca,tipo,capacidad));  
     }
       
-        public void setPlacaVideo(String descripcion, int cantidadStock, double precioUnitario,String fabricante,String modelo,int capacidadMemoria)
+    public void setPlacaVideo(String descripcion, int cantidadStock, double precioUnitario,
+                              String fabricante,String modelo,int capacidadMemoria)
     { 
-       this.listaProductos.add(producto.altaPlacaVideo(descripcion,cantidadStock,precioUnitario,fabricante,modelo,capacidadMemoria));  
+       this.listaProductos.add(producto.altaPlacaVideo(descripcion,cantidadStock,
+                                precioUnitario,fabricante,modelo,capacidadMemoria));  
     }
+    
+    public void setLaptop(String descripcion, int cantidadStock, double precioUnitario,
+                          String marca, String modelo,int tamanioPantalla)
+    { 
+       this.listaProductos.add(producto.altaLaptop(descripcion,cantidadStock,precioUnitario,
+                               marca, modelo, tamanioPantalla));  
+    }
+    
+        
+        
       
     public void mostrarStock() 
     {
@@ -54,7 +72,7 @@ public class Tienda
                             +"  ||Marca:  "+  ram.getMarca()
                             +"  ||Tecnologia: "+ ram.getTecnologia()
                             +"  ||Frecuencia maximaa:  "+ ram.getFrecuenciaMaxima()
-                            +"  ||Capacidad: "+ ram.getCapacidad());
+                            +"  ||Capacidad: "+ ram.getCapacidad()); 
            }
            if(p.getDescripcion().equals("Procesador"))
            {
