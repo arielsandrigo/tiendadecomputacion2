@@ -35,7 +35,7 @@ public class Tienda
        this.listaProductos.add(producto.altaPlacaVideo(descripcion,cantidadStock,precioUnitario,fabricante,modelo,capacidadMemoria));  
     }
       
-    public void mostrarStock() 
+    public void mostrarStockGeneral() 
     {
         Ram ram;
         Procesador procesador;
@@ -103,53 +103,9 @@ public class Tienda
            } 
        }
     }
-    
- //   ---------------------
-    
-    public void menuStockProductos()
-    {
-      
-       int opcion;
-       String mensaje;
-       
-       do
-       { 
-             mensaje="\n----menu stock----\n"
-                    +"[1] Stock componentes\n"
-                    +"[2] Stock perifericos\n"
-                    +"[3] Salir\n"
-                    +"Digite una opcion: ";
-         opcion = EntradaYSalida.leerDatoEntero(mensaje);
-        
-         switch (opcion)
-         {
-            case 1:
-    	          menuStockComponentes();
-             break;
-            case 2:
-                  menuStockPeriferico();
-             break;
-            case 3:
-                  EntradaYSalida.mostrarMensaje("salir");
-             break;
-         }
-       
-       } while (!(opcion == 3));
 
-    }
-//    public void listarComponentesYPerifericos()
-//   {
-//       listaProductos.stream().filter((p) -> 
-//           (!p.getDescripcion().equals("Mouse"))).forEachOrdered((p) -> {     
-//               EntradaYSalida.mostrarMensaje(
-//                            " stock: "+ p.getCantidadStock()
-//                            +"  ||Descripcion: "+ p.getDescripcion()
-//                            +"  ||Precio: $"+ p.getPrecioUnitario() +"\n");
-//          });
-//    
-//   }
 
-    private void menuStockComponentes()
+    public void mostrarStockComponentes()
     {
           Ram ram;
         Procesador procesador;
@@ -169,7 +125,7 @@ public class Tienda
                             +"  ||Frecuencia maximaa:  "+ ram.getFrecuenciaMaxima()
                             +"  ||Capacidad: "+ ram.getCapacidad());
            }
-           if(p.getDescripcion().equals("Procesador"))
+           else if(p.getDescripcion().equals("Procesador"))
            {
                 procesador=(Procesador) p;
                 EntradaYSalida.mostrarMensaje(
@@ -178,10 +134,10 @@ public class Tienda
                             +"  ||Precio: $"+ p.getPrecioUnitario()
                             +"  ||Fabricante:  "+ procesador.getfabricante()
                             +"  ||Modelo: "+ procesador.getModelo()
-                            +"  ||Frecuencia maximaa:  "+ procesador.getFrecuenciaMaxima());
+                            +"  ||Frecuencia maxima:  "+ procesador.getFrecuenciaMaxima());
            }
            
-            if(p.getDescripcion().equals("Disco"))
+          else  if(p.getDescripcion().equals("Disco"))
            {
                 disco=(Disco) p;
                 EntradaYSalida.mostrarMensaje(""
@@ -193,7 +149,7 @@ public class Tienda
                             +"  ||Capacidad:  "+ disco.getCapacidad());
            }
             
-            if(p.getDescripcion().equals("PlacaVideo"))
+         else if(p.getDescripcion().equals("PlacaVideo"))
            {
                 placaVideo=(PlacaVideo) p;
                 EntradaYSalida.mostrarMensaje(""
@@ -210,7 +166,7 @@ public class Tienda
         
     }
 
-    private void menuStockPeriferico()
+    public void mostarStockPeriferico()
             
     {
         Periferico periferico;
@@ -229,4 +185,6 @@ public class Tienda
        }
     }
     
+
+   
 }

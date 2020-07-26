@@ -34,7 +34,7 @@ public class Duenio
     	          menuAltaProductos();
              break;
             case 2:
-                  tienda.menuStockProductos();
+                  menuStockProductos();
              break;
             case 3:
                   EntradaYSalida.mostrarMensaje("salir");
@@ -90,9 +90,9 @@ public class Duenio
       {
 
           EntradaYSalida.mostrarMensaje("\n----Perifericos----\n");
-           EntradaYSalida.mostrarMensaje("descripcion\n"+descripcion+"\n");      
-          cantidadStock=EntradaYSalida.leerDatoEntero("Ingrese la cantidad stock");
-          precioUnitario=EntradaYSalida.leerDatoDouble("Ingrese el precio Unitario "); 
+           EntradaYSalida.mostrarMensaje("descripcion: "+descripcion+"\n");      
+          cantidadStock=EntradaYSalida.leerDatoEntero("Ingrese la cantidad stock: ");
+          precioUnitario=EntradaYSalida.leerDatoDouble("Ingrese el precio Unitario: "); 
         
                            mensaje=("\n---Tipo---\n"
                                     + "[1] Teclado\n"
@@ -131,35 +131,6 @@ public class Duenio
             
     }
 
-//    private void darDeAltaLaptop()
-//    {
-//        String opcion, marca, modelo;
-//        int cantidadStock;
-//        double precioUnitario;
-//
-//      do
-//      {
-//        EntradaYSalida.mostrarMensaje("\n----Lista de Componentes y Perifericos----\n");
-//        tienda.listarComponentesYPerifericos();
-//
-//        EntradaYSalida.mostrarMensaje("Ingresar cantidad:  ");
-//        cantidadStock = Integer.parseInt(EntradaYSalida.leerCantidadStock());
-//        EntradaYSalida.mostrarMensaje("Ingresar precio unitario: ");
-//        precioUnitario = Double.parseDouble(EntradaYSalida.leerPrecioDelProducto());
-//        EntradaYSalida.mostrarMensaje("Ingresar Marca: ");
-//        marca = EntradaYSalida.leerPrecioDelProducto();
-//        EntradaYSalida.mostrarMensaje("Ingresar Modelo: ");
-//        modelo = EntradaYSalida.leerPrecioDelProducto();
-//        
-//        //tienda.setStockLaptop("Laptop", cantidadsssStock, precioUnitario, marca, modelo);
-//        
-//        EntradaYSalida.mostrarMensaje("\nDesea continuar[s/n]?: ");
-//        EntradaYSalida.limpiarBuffer();
-//        opcion = EntradaYSalida.leerOpcion();
-//
-//        } while( opcion.equals("s") || opcion.equals("S"));
-//                
-//    }
 
     private void darDeAltaComponente() 
     {
@@ -211,9 +182,9 @@ public class Duenio
       do
       {
         EntradaYSalida.mostrarMensaje("\n----Ram----\n");
-        EntradaYSalida.mostrarMensaje("Descripcion \n"+descripcion+"\n");       
-        cantidadStock=EntradaYSalida.leerDatoEntero("Ingrese la cantidad stock");
-        precioUnitario=EntradaYSalida.leerDatoDouble("Ingrese el precio Unitario ");  
+        EntradaYSalida.mostrarMensaje("Descripcion: "+descripcion+"\n");       
+        cantidadStock=EntradaYSalida.leerDatoEntero("Ingrese la cantidad stock: ");
+        precioUnitario=EntradaYSalida.leerDatoDouble("Ingrese el precio Unitario: ");  
         marca=EntradaYSalida.leerCadena("Ingresar la marca: ");          
         tecnologia=EntradaYSalida.leerCadena("Ingresar la tecnologia:  ");
         frecuenciaMaxima=EntradaYSalida.leerCadena("Ingresar la frecuencia maxima: ");
@@ -243,12 +214,12 @@ public class Duenio
       do
       {
         EntradaYSalida.mostrarMensaje("\n----Procesador----\n");
-        EntradaYSalida.leerCadena("descripcion\n"+descripcion+"\n"); 
-        cantidadStock=EntradaYSalida.leerDatoEntero("Ingrese la cantidad stock");
-        precioUnitario=EntradaYSalida.leerDatoDouble("Ingrese el precio Unitario ");  
+        EntradaYSalida.leerCadena("descripcion: "+descripcion+"\n"); 
+        cantidadStock=EntradaYSalida.leerDatoEntero("Ingrese la cantidad stock: ");
+        precioUnitario=EntradaYSalida.leerDatoDouble("Ingrese el precio Unitario: ");  
         fabricante=EntradaYSalida.leerCadena("Ingresar el fabricante: ");          
-        modelo=EntradaYSalida.leerCadena("Ingresar el modelo");
-        frecuenciaMaxima=EntradaYSalida.leerCadena("Ingresar la frecuencia maxima");
+        modelo=EntradaYSalida.leerCadena("Ingresar el modelo: ");
+        frecuenciaMaxima=EntradaYSalida.leerCadena("Ingresar la frecuencia maxima: ");
 	
                 
         tienda.setProcesador(descripcion, cantidadStock, precioUnitario,fabricante,modelo,frecuenciaMaxima);
@@ -272,10 +243,10 @@ public class Duenio
       do
       {
         EntradaYSalida.mostrarMensaje("\n----Disco----\n");
-        EntradaYSalida.mostrarMensaje("descripcion\n"+descripcion+"\n"); 
-        cantidadStock=EntradaYSalida.leerDatoEntero("Ingrese la cantidad stock");
-        precioUnitario=EntradaYSalida.leerDatoDouble("Ingrese el precio Unitario "); 
-        marca=EntradaYSalida.leerCadena("Ingresar a marca");
+        EntradaYSalida.mostrarMensaje("descripcion: "+descripcion+"\n"); 
+        cantidadStock=EntradaYSalida.leerDatoEntero("Ingrese la cantidad stock: ");
+        precioUnitario=EntradaYSalida.leerDatoDouble("Ingrese el precio Unitario: "); 
+        marca=EntradaYSalida.leerCadena("Ingresar a marca: ");
         
         EntradaYSalida.mostrarMensaje("\n---Tipo---\n"
                                     + "[1] Magnetico\n"
@@ -292,7 +263,7 @@ public class Duenio
         }
           
      
-        capacidad=EntradaYSalida.leerDatoEntero("Ingresar la capacidad");
+        capacidad=EntradaYSalida.leerDatoEntero("Ingresar la capacidad: ");
 	
                 
         tienda.setDisco(descripcion, cantidadStock, precioUnitario,marca,tipo,capacidad);
@@ -316,12 +287,12 @@ public class Duenio
       do
       {
         EntradaYSalida.mostrarMensaje("\n----Placa De Video----\n");
-        EntradaYSalida.mostrarMensaje("descripcion\n"+descripcion+"\n");   
-        cantidadStock=EntradaYSalida.leerDatoEntero("Ingrese la cantidad stock");
-        precioUnitario=EntradaYSalida.leerDatoDouble("Ingrese el precio Unitario ");  
+        EntradaYSalida.mostrarMensaje("descripcion: "+descripcion+"\n");   
+        cantidadStock=EntradaYSalida.leerDatoEntero("Ingrese la cantidad stock: ");
+        precioUnitario=EntradaYSalida.leerDatoDouble("Ingrese el precio Unitario: ");  
         fabricante=EntradaYSalida.leerCadena("Ingresar el fabricante: ");          
-        modelo=EntradaYSalida.leerCadena("Ingresar el modelo");
-        capacidadMemoria=EntradaYSalida.leerDatoEntero("Ingresar la capacidad de memoria");
+        modelo=EntradaYSalida.leerCadena("Ingresar el modelo: ");
+        capacidadMemoria=EntradaYSalida.leerDatoEntero("Ingresar la capacidad de memoria: ");
 	
                 
         tienda.setPlacaVideo(descripcion, cantidadStock, precioUnitario,fabricante,modelo,capacidadMemoria);
@@ -331,5 +302,72 @@ public class Duenio
         } while( opcion.equals("s") || opcion.equals("S"));
             
     }
+    
+    
+        public void menuStockProductos()
+    {
+      
+       int opcion;
+       String mensaje;
+       
+       do
+       { 
+             mensaje="\n----menu stock----\n"
+                    +"[1] Stock perifericos\n"
+                    +"[2] Stock componentes\n"
+                    +"[4] Stock Total\n"
+                    +"[3] Salir\n"
+                    +"Digite una opcion: ";
+         opcion = EntradaYSalida.leerDatoEntero(mensaje);
+        
+         switch (opcion)
+         {
+            case 1:
+                  tienda.mostrarStockPeriferico();
+             break;
+            case 2:
+                  tienda.mostrarStockComponentes();
+             break;
+            case 3:
+                  tienda.mostrarStockGeneral();
+             break;
+            case 4:
+                  EntradaYSalida.mostrarMensaje("salir");
+             break;
+         }
+       
+       } while (!(opcion == 4));
+
+    }
+    
+    //    private void darDeAltaLaptop()
+//    {
+//        String opcion, marca, modelo;
+//        int cantidadStock;
+//        double precioUnitario;
+//
+//      do
+//      {
+//        EntradaYSalida.mostrarMensaje("\n----Lista de Componentes y Perifericos----\n");
+//        tienda.listarComponentesYPerifericos();
+//
+//        EntradaYSalida.mostrarMensaje("Ingresar cantidad:  ");
+//        cantidadStock = Integer.parseInt(EntradaYSalida.leerCantidadStock());
+//        EntradaYSalida.mostrarMensaje("Ingresar precio unitario: ");
+//        precioUnitario = Double.parseDouble(EntradaYSalida.leerPrecioDelProducto());
+//        EntradaYSalida.mostrarMensaje("Ingresar Marca: ");
+//        marca = EntradaYSalida.leerPrecioDelProducto();
+//        EntradaYSalida.mostrarMensaje("Ingresar Modelo: ");
+//        modelo = EntradaYSalida.leerPrecioDelProducto();
+//        
+//        //tienda.setStockLaptop("Laptop", cantidadsssStock, precioUnitario, marca, modelo);
+//        
+//        EntradaYSalida.mostrarMensaje("\nDesea continuar[s/n]?: ");
+//        EntradaYSalida.limpiarBuffer();
+//        opcion = EntradaYSalida.leerOpcion();
+//
+//        } while( opcion.equals("s") || opcion.equals("S"));
+//                
+//    }
     
 }

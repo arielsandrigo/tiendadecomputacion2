@@ -74,20 +74,20 @@ public class EntradaYSalida {
   //----------------------------------------------------------- 
      public static String leerCadena(String mensaje)
     {
-        System.out.println(mensaje);
+        System.out.print(mensaje);
        String entrada= new Scanner(System.in).nextLine();
         return (entrada == null ? "" : entrada);
     }
    
     public static int leerDatoEntero(String mensaje)
     {
-        System.out.println(mensaje);
+        System.out.print(mensaje);
         return entrada.nextInt();
     }   
    
     public static float leerDatoDouble(String mensaje) 
     {
-        System.out.println(mensaje);
+        System.out.print(mensaje);
         return (float) entrada.nextDouble();
         
     }
