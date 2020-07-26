@@ -11,27 +11,33 @@ public class Producto
 
     }
 
-    public void setCantidadStock(int cantidadStock) {
+    public void setCantidadStock(int cantidadStock) 
+    {
         this.cantidadStock = cantidadStock;
     }
 
-    public int getCantidadStock() {
+    public int getCantidadStock() 
+    {
         return cantidadStock;
     }
 
-    public void setDescripcion(String descripcion) {
+    public void setDescripcion(String descripcion) 
+    {
         this.descripcion = descripcion;
     }
 
-    public String getDescripcion() {
+    public String getDescripcion() 
+    {
         return descripcion;
     }
 
-    public void setPrecioUnitario(double precioUnitario) {
+    public void setPrecioUnitario(double precioUnitario) 
+    {
         this.precioUnitario = precioUnitario;
     }
 
-    public double getPrecioUnitario() {
+    public double getPrecioUnitario()
+    {
         return precioUnitario;
     }
     
@@ -47,6 +53,7 @@ public class Producto
         Periferico periferico;
         FactoriaDeProductos factoria = FactoriaDeProductos.getInstancia();
         Producto p = null;
+        
         try 
         {
              p = factoria.crearProducto(descripcion, cantidadStock, precioUnitario);
@@ -131,6 +138,7 @@ public class Producto
         PlacaVideo placaVideo;
         FactoriaDeProductos factoria = FactoriaDeProductos.getInstancia();
         Producto p = null;
+        
         try 
         {
              p = factoria.crearProducto(descripcion, cantidadStock, precioUnitario);
@@ -143,8 +151,30 @@ public class Producto
         {
             EntradaYSalida.mostrarMensaje(" No se pudo crear el producto");
             e.printStackTrace();     
-    }
+        }
+        
         return p;
-}
+    }
+
+    //TODO: falta completar el codigo- Alberto
+    Producto altaLaptop(String descripcion, int cantidadStock, double precioUnitario, 
+                        String marca, String modelo, int tamanioPantalla) 
+    {
+        Laptop laptop;
+        FactoriaDeProductos factoria = FactoriaDeProductos.getInstancia();
+        Producto p = null;
+        
+        try 
+        {
+            p = factoria.crearProducto(descripcion, cantidadStock, precioUnitario);
+             
+        } catch (ReflectiveOperationException e) 
+        {
+            EntradaYSalida.mostrarMensaje(" No se pudo crear el producto");
+            e.printStackTrace();     
+        }
+        
+        return p;
+    }
     
 }

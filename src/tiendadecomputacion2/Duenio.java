@@ -257,17 +257,14 @@ public class Duenio
         {
           tipo="Magnetico";
         }
-        if(tipo.equals("2"))
+        else if(tipo.equals("2"))
         {
-         tipo="SSD";     
+          tipo="SSD";     
         }
           
-     
-        capacidad=EntradaYSalida.leerDatoEntero("Ingresar la capacidad: ");
-	
-                
+
+        capacidad=EntradaYSalida.leerDatoEntero("Ingresar la capacidad");      
         tienda.setDisco(descripcion, cantidadStock, precioUnitario,marca,tipo,capacidad);
-        
         opcion=EntradaYSalida.leerCadena("\nDesea continuar[s/n]?: ");
 
         } while( opcion.equals("s") || opcion.equals("S"));
@@ -275,7 +272,6 @@ public class Duenio
 
     private void darDeAltaPlacaVideo()
     {
-    
         String fabricante;
         String modelo;
         int capacidadMemoria;
@@ -291,12 +287,12 @@ public class Duenio
         cantidadStock=EntradaYSalida.leerDatoEntero("Ingrese la cantidad stock: ");
         precioUnitario=EntradaYSalida.leerDatoDouble("Ingrese el precio Unitario: ");  
         fabricante=EntradaYSalida.leerCadena("Ingresar el fabricante: ");          
-        modelo=EntradaYSalida.leerCadena("Ingresar el modelo: ");
-        capacidadMemoria=EntradaYSalida.leerDatoEntero("Ingresar la capacidad de memoria: ");
-	
-                
+
+        modelo=EntradaYSalida.leerCadena("Ingresar el modelo");
+        capacidadMemoria=EntradaYSalida.leerDatoEntero("Ingresar la capacidad de memoria");
+	           
+
         tienda.setPlacaVideo(descripcion, cantidadStock, precioUnitario,fabricante,modelo,capacidadMemoria);
-        
         opcion=EntradaYSalida.leerCadena("\nDesea continuar[s/n]?: ");
 
         } while( opcion.equals("s") || opcion.equals("S"));
@@ -323,7 +319,7 @@ public class Duenio
          switch (opcion)
          {
             case 1:
-                  tienda.mostrarStockPeriferico();
+                  tienda.mostarStockPeriferico();
              break;
             case 2:
                   tienda.mostrarStockComponentes();
@@ -340,34 +336,6 @@ public class Duenio
 
     }
     
-    //    private void darDeAltaLaptop()
-//    {
-//        String opcion, marca, modelo;
-//        int cantidadStock;
-//        double precioUnitario;
-//
-//      do
-//      {
-//        EntradaYSalida.mostrarMensaje("\n----Lista de Componentes y Perifericos----\n");
-//        tienda.listarComponentesYPerifericos();
-//
-//        EntradaYSalida.mostrarMensaje("Ingresar cantidad:  ");
-//        cantidadStock = Integer.parseInt(EntradaYSalida.leerCantidadStock());
-//        EntradaYSalida.mostrarMensaje("Ingresar precio unitario: ");
-//        precioUnitario = Double.parseDouble(EntradaYSalida.leerPrecioDelProducto());
-//        EntradaYSalida.mostrarMensaje("Ingresar Marca: ");
-//        marca = EntradaYSalida.leerPrecioDelProducto();
-//        EntradaYSalida.mostrarMensaje("Ingresar Modelo: ");
-//        modelo = EntradaYSalida.leerPrecioDelProducto();
-//        
-//        //tienda.setStockLaptop("Laptop", cantidadsssStock, precioUnitario, marca, modelo);
-//        
-//        EntradaYSalida.mostrarMensaje("\nDesea continuar[s/n]?: ");
-//        EntradaYSalida.limpiarBuffer();
-//        opcion = EntradaYSalida.leerOpcion();
-//
-//        } while( opcion.equals("s") || opcion.equals("S"));
-//                
-//    }
+
     
 }
