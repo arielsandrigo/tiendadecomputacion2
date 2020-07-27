@@ -2,7 +2,7 @@ package tiendadecomputacion2;
 
 public class Laptop extends Computadora
 {
-    private String marca, modelo;
+    private String marca, modelo,tamanioPantalla;
 
     public void setMarca(String marca)
     {
@@ -23,6 +23,15 @@ public class Laptop extends Computadora
     {
         return modelo;
     }
-       
+
+    public String getTamanioPantalla() {
+        return tamanioPantalla;
+    }
+
+    public void setTamanioPantalla(String tamanioPantalla) {
+        this.tamanioPantalla = tamanioPantalla;
+    }
+    
+     
     
 }

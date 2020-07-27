@@ -157,8 +157,7 @@ public class Producto
     }
 
     //TODO: falta completar el codigo- Alberto
-    Producto altaLaptop(String descripcion, int cantidadStock, double precioUnitario, 
-                        String marca, String modelo, int tamanioPantalla) 
+    Producto altaLaptop(String descripcion, String tipo,int cantidadStock, String marca, String modelo,String tamanioPantalla, double precioUnitario)
     {
         Laptop laptop;
         FactoriaDeProductos factoria = FactoriaDeProductos.getInstancia();
@@ -167,6 +166,12 @@ public class Producto
         try 
         {
             p = factoria.crearProducto(descripcion, cantidadStock, precioUnitario);
+            laptop = (Laptop) p;
+            laptop.setTipo(tipo);
+            laptop.setMarca(marca);
+            laptop.setModelo(modelo);
+            laptop.setTamanioPantalla(tamanioPantalla);
+            laptop.setPrecioUnitario(precioUnitario);
              
         } catch (ReflectiveOperationException e) 
         {
@@ -175,6 +180,27 @@ public class Producto
         }
         
         return p;
+    }
+
+    Producto altaDesktop(String descripcion, String tipo, int cantidadStock, double precioUnitario) {
+        Laptop laptop;
+        FactoriaDeProductos factoria = FactoriaDeProductos.getInstancia();
+        Producto p = null;
+        
+        try 
+        {
+            p = factoria.crearProducto(descripcion, cantidadStock, precioUnitario);
+            laptop = (Laptop) p;
+            laptop.setTipo(tipo);
+            laptop.setPrecioUnitario(precioUnitario);
+             
+        } catch (ReflectiveOperationException e) 
+        {
+            EntradaYSalida.mostrarMensaje(" No se pudo crear el producto");
+            e.printStackTrace();     
+        }
+        
+        return p;   
     }
     
 }

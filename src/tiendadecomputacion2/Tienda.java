@@ -8,46 +8,50 @@ public class Tienda
     private final ArrayList<Producto> listaProductos = new ArrayList<>();
 
     
-    public void setPeriferico(String descripcion, int cantidadStock, double precioUnitario,
-                              String tipo)
+    public void setPeriferico(String descripcion, int cantidadStock, double precioUnitario,String tipo)
     {  
-       this.listaProductos.add(producto.altaPeriferico(descripcion, cantidadStock,
-                                precioUnitario,tipo));   
+       this.listaProductos.add(producto.altaPeriferico(descripcion, cantidadStock,precioUnitario,tipo));   
     }
     
-    public void setRam(String descripcion, int cantidadStock, double precioUnitario,
-                       String marca,String tecnologia,                                                                            String frecuenciaMaxima, int capacidad)
+    public void setRam(String descripcion, int cantidadStock, double precioUnitario,String marca,
+                                        String tecnologia,String frecuenciaMaxima, int capacidad)
     { 
-       this.listaProductos.add(producto.altaRam(descripcion,cantidadStock,precioUnitario,
-                                marca,tecnologia,frecuenciaMaxima,capacidad));  
+       this.listaProductos.add(producto.altaRam(descripcion,cantidadStock,precioUnitario, marca,
+                                                        tecnologia,frecuenciaMaxima,capacidad));  
     }
     
      public void setProcesador(String descripcion, int cantidadStock, double precioUnitario,
-                               String fabricante,String modelo,String frecuenciaMaxima)
+                                    String fabricante,String modelo,String frecuenciaMaxima)
     { 
-       this.listaProductos.add(producto.altaProcesador(descripcion,cantidadStock,
-                            precioUnitario,fabricante,modelo, frecuenciaMaxima));  
+       this.listaProductos.add(producto.altaProcesador(descripcion,cantidadStock,precioUnitario,
+                                                           fabricante,modelo, frecuenciaMaxima));  
     }
      
-    public void setDisco(String descripcion, int cantidadStock, double precioUnitario,
-                         String marca,String tipo,int capacidad)
+    public void setDisco(String descripcion, int cantidadStock,double precioUnitario,String marca,
+                                                                        String tipo,int capacidad)
     { 
-       this.listaProductos.add(producto.altaDisco(descripcion,cantidadStock,precioUnitario,
-                                                  marca,tipo,capacidad));  
+       this.listaProductos.add(producto.altaDisco(descripcion,cantidadStock,precioUnitario,marca,
+                                                                                 tipo,capacidad));  
     }
       
-    public void setPlacaVideo(String descripcion, int cantidadStock, double precioUnitario,
-                              String fabricante,String modelo,int capacidadMemoria)
+    public void setPlacaVideo(String descripcion, int cantidadStock, double precioUnitario,String fabricante,
+                                                                          String modelo,int capacidadMemoria)
     { 
-       this.listaProductos.add(producto.altaPlacaVideo(descripcion,cantidadStock,
-                                precioUnitario,fabricante,modelo,capacidadMemoria));  
+       this.listaProductos.add(producto.altaPlacaVideo(descripcion,cantidadStock,precioUnitario,fabricante,
+                                                                                  modelo,capacidadMemoria));  
     }
     
-    public void setLaptop(String descripcion, int cantidadStock, double precioUnitario,
-                          String marca, String modelo,int tamanioPantalla)
+    public void setLaptop(String descripcion,String tipo,int cantidadStock,String marca, String modelo,
+                                                             String tamanioPantalla, double precioUnitario)
     { 
-       this.listaProductos.add(producto.altaLaptop(descripcion,cantidadStock,precioUnitario,
-                               marca, modelo, tamanioPantalla));  
+       this.listaProductos.add(producto.altaLaptop(descripcion,tipo,cantidadStock,marca,modelo,
+                                                              tamanioPantalla,precioUnitario));                               
+    }
+    
+    public void setDesktop(String descripcion,String tipo,int cantidadStock, double precioUnitario)
+    { 
+       this.listaProductos.add(producto.altaDesktop(descripcion,tipo,cantidadStock,precioUnitario));
+                                 
     }
     
         
@@ -55,6 +59,7 @@ public class Tienda
       
     public void mostrarStockGeneral() 
     {
+
         Ram ram;
         Procesador procesador;
         Disco disco;
@@ -62,8 +67,10 @@ public class Tienda
         Periferico periferico;
        for (Producto p: listaProductos)
          {
+ 
            if(p.getDescripcion().equals("Ram"))
            {
+   
                 ram=(Ram) p;
                 EntradaYSalida.mostrarMensaje(
                     " \nstock: "+ p.getCantidadStock()
@@ -74,7 +81,7 @@ public class Tienda
                             +"  ||Frecuencia maximaa:  "+ ram.getFrecuenciaMaxima()
                             +"  ||Capacidad: "+ ram.getCapacidad()); 
            }
-           if(p.getDescripcion().equals("Procesador"))
+          else if(p.getDescripcion().equals("Procesador"))
            {
                 procesador=(Procesador) p;
                 EntradaYSalida.mostrarMensaje(
@@ -86,7 +93,7 @@ public class Tienda
                             +"  ||Frecuencia maximaa:  "+ procesador.getFrecuenciaMaxima());
            }
            
-            if(p.getDescripcion().equals("Disco"))
+           else if(p.getDescripcion().equals("Disco"))
            {
                 disco=(Disco) p;
                 EntradaYSalida.mostrarMensaje(""
@@ -98,7 +105,7 @@ public class Tienda
                             +"  ||Capacidad:  "+ disco.getCapacidad());
            }
             
-            if(p.getDescripcion().equals("PlacaVideo"))
+          else if(p.getDescripcion().equals("PlacaVideo"))
            {
                 placaVideo=(PlacaVideo) p;
                 EntradaYSalida.mostrarMensaje(""
@@ -110,7 +117,7 @@ public class Tienda
                             +"  ||Capacidad de Memoria:  "+ placaVideo.getCapacidadMemoria());
            } 
             
-             if(p.getDescripcion().equals("Periferico"))
+          else if(p.getDescripcion().equals("Periferico"))
            {
                 periferico=(Periferico) p;
                 EntradaYSalida.mostrarMensaje(""
@@ -119,13 +126,21 @@ public class Tienda
                             +"  ||Precio: $"+ p.getPrecioUnitario()
                             +"  ||Tipo:  "+periferico.getTipo());
            } 
+          else if(p.getDescripcion().equals("Laptop"))
+          {
+            mostrarStockLaptop();
+          }
+          else if(p.getDescripcion().equals("Desktop"))
+          {
+            mostrarStockDesktop();
+          }
        }
     }
 
 
     public void mostrarStockComponentes()
     {
-          Ram ram;
+        Ram ram;
         Procesador procesador;
         Disco disco;
         PlacaVideo placaVideo;
@@ -184,7 +199,7 @@ public class Tienda
         
     }
 
-    public void mostarStockPeriferico()
+    public void mostrarStockPeriferico()
             
     {
         Periferico periferico;
@@ -203,6 +218,80 @@ public class Tienda
        }
     }
     
-
+     public void mostrarStockLaptop()
+            
+    {
+        Laptop laptop;
+       for (Producto p: listaProductos)
+         {
+            
+             if(p.getDescripcion().equals("Laptop"))
+           {
+                laptop=(Laptop) p;
+                EntradaYSalida.mostrarMensaje(""
+                    + " \nstock: "+ p.getCantidadStock()
+                            +"  ||Descripcion: "+ p.getDescripcion()
+                            +"  ||Tipo:  "+laptop.getTipo()
+                            +"  ||Marca: "+ laptop.getMarca()
+                            +"  ||Modelo:  "+laptop.getModelo()
+                            +"  ||Tamaño de pantalla :  "+laptop.getTamanioPantalla()
+                            +"  ||Precio $ :  "+p.getPrecioUnitario());
+           } 
+       }
+    }
+    
+   public void mostrarStockDesktop()
+            
+    {
+       Desktop desktop;
+       for (Producto p: listaProductos)
+         {
+            
+             if(p.getDescripcion().equals("Desktop"))
+           {
+                desktop=(Desktop) p;
+                EntradaYSalida.mostrarMensaje(""
+                    + " \nstock: "+ p.getCantidadStock()
+                            +"  ||Descripcion: "+ p.getDescripcion()
+                            +"  ||Tipo:  "+desktop.getTipo()
+                            +"  ||Precio $ :  "+p.getPrecioUnitario());
+           } 
+       }
+    }
+    
+    public void mostrarStockTotalComputadoras()
+            
+    {
+       Desktop desktop;
+       Laptop laptop;
+  
+       for (Producto p: listaProductos)
+       {
+  
+           if(p.getDescripcion().equals("Laptop"))
+           {
+                laptop=(Laptop) p;
+                EntradaYSalida.mostrarMensaje(""
+                    + " \nstock: "+ p.getCantidadStock()
+                            +"  ||Descripcion: "+ p.getDescripcion()
+                            +"  ||Tipo:  "+laptop.getTipo()
+                            +"  ||Marca: "+ laptop.getMarca()
+                            +"  ||Modelo:  "+laptop.getModelo()
+                            +"  ||Tamaño de pantalla :  "+laptop.getTamanioPantalla()
+                            +"  ||Precio $ :  "+p.getPrecioUnitario());
+           } 
+       
+           else if(p.getDescripcion().equals("Desktop"))
+           {
+                desktop=(Desktop) p;
+                EntradaYSalida.mostrarMensaje(""
+                    + " \nstock: "+ p.getCantidadStock()
+                            +"  ||Descripcion: "+ p.getDescripcion()
+                            +"  ||Tipo:  "+desktop.getTipo()
+                            +"  ||Precio $ :  "+p.getPrecioUnitario());
+           } 
+       }
+       
+  }
    
 }
