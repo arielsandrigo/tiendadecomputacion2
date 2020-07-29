@@ -1,5 +1,7 @@
 package tiendadecomputacion2;
 
+import java.util.ArrayList;
+
 public class Producto 
 {
     private int cantidadStock;
@@ -46,9 +48,10 @@ public class Producto
      * @param descripcion
      * @param cantidadStock
      * @param precioUnitario
+     * @param tipo
      * @return p of type Productos
      */
-    public Producto altaPeriferico(String descripcion, int cantidadStock, double precioUnitario,String tipo) 
+    public Producto altaPeriferico(String tipo, int cantidadStock, double precioUnitario,String descripcion) 
     {
         Periferico periferico;
         FactoriaDeProductos factoria = FactoriaDeProductos.getInstancia();
@@ -56,9 +59,9 @@ public class Producto
         
         try 
         {
-             p = factoria.crearProducto(descripcion, cantidadStock, precioUnitario);
+             p = factoria.crearProducto(tipo, cantidadStock, precioUnitario);
              periferico=(Periferico) p;
-             periferico.setTipo(tipo);
+             periferico.setTipo(descripcion);
         } catch (ReflectiveOperationException e) 
         {
             EntradaYSalida.mostrarMensaje(" No se pudo crear el producto");
@@ -114,7 +117,7 @@ public class Producto
       
     public Producto altaDisco(String descripcion,int cantidadStock, double precioUnitario,String marca,String tipo,int capacidad)
     {
-       Disco disco ;
+        Disco disco ;
         FactoriaDeProductos factoria = FactoriaDeProductos.getInstancia();
         Producto p = null;
         try 
@@ -156,18 +159,18 @@ public class Producto
         return p;
     }
 
-    //TODO: falta completar el codigo- Alberto
-    Producto altaLaptop(String descripcion, String tipo,int cantidadStock, String marca, String modelo,String tamanioPantalla, double precioUnitario)
+    Producto altaLaptop(ArrayList<Producto> listaProductos, String descripcion,
+           int cantidadStock, String marca, String modelo,String tamanioPantalla, double precioUnitario)
     {
         Laptop laptop;
         FactoriaDeProductos factoria = FactoriaDeProductos.getInstancia();
         Producto p = null;
         
-        try 
-        {
+       try          
+       {            
             p = factoria.crearProducto(descripcion, cantidadStock, precioUnitario);
+            p = setArmarLaptop(p, listaProductos);
             laptop = (Laptop) p;
-            laptop.setTipo(tipo);
             laptop.setMarca(marca);
             laptop.setModelo(modelo);
             laptop.setTamanioPantalla(tamanioPantalla);
@@ -182,7 +185,8 @@ public class Producto
         return p;
     }
 
-    Producto altaDesktop(String descripcion, String tipo, int cantidadStock, double precioUnitario) {
+    Producto altaDesktop(String descripcion, String tipo, int cantidadStock, double precioUnitario) 
+    {
         Laptop laptop;
         FactoriaDeProductos factoria = FactoriaDeProductos.getInstancia();
         Producto p = null;
@@ -191,7 +195,6 @@ public class Producto
         {
             p = factoria.crearProducto(descripcion, cantidadStock, precioUnitario);
             laptop = (Laptop) p;
-            laptop.setTipo(tipo);
             laptop.setPrecioUnitario(precioUnitario);
              
         } catch (ReflectiveOperationException e) 
@@ -201,6 +204,51 @@ public class Producto
         }
         
         return p;   
+    }
+
+    private Producto setArmarLaptop(Producto p, ArrayList<Producto> listaProductos)
+    {
+        Laptop  laptop = (Laptop) p; 
+        int cantidad;
+        
+        for (int i = 0; i < listaProductos.size(); i++)
+        {
+            String componente = listaProductos.get(i).getDescripcion();
+            
+            switch(componente)
+            {
+                case "Procesador": 
+                   cantidad = listaProductos.get(i).getCantidadStock() - 1;
+                   listaProductos.get(i).setCantidadStock(cantidad);
+                   Procesador procesador = (Procesador)listaProductos.get(i); 
+                   laptop.setProcesador(procesador);
+                   cantidad = 0;
+                 break;       
+                case "Ram": 
+                   cantidad = listaProductos.get(i).getCantidadStock() - 1;
+                   listaProductos.get(i).setCantidadStock(cantidad);
+                   Ram ram = (Ram)listaProductos.get(i);        
+                   laptop.setRam(ram);
+                   cantidad = 0;
+                 break;
+                    
+                case "Disco": 
+                   cantidad = listaProductos.get(i).getCantidadStock() - 1;
+                   listaProductos.get(i).setCantidadStock(cantidad);
+                   Disco disco = (Disco)listaProductos.get(i);        
+                   laptop.setDisco(disco);
+                   cantidad = 0;
+                 break;
+                case "PlacaVideo":
+                   cantidad = listaProductos.get(i).getCantidadStock() - 1;
+                   listaProductos.get(i).setCantidadStock(cantidad);
+                   PlacaVideo placaVideo = (PlacaVideo)listaProductos.get(i);        
+                   laptop.setPlacaVideo(placaVideo);
+                   cantidad = 0;
+                    break;  
+            }    
+        }
+        return p;
     }
     
 }

@@ -53,7 +53,7 @@ public class Duenio
         do
        {
           mensaje="\n----Menu de productos----\n"
-                         +"[1] Perifericos\n"
+                         +"[1] Periferico\n"
                          +"[2] Componente\n"
                          +"[3] Computadora\n"
                          +"[4] Salir\n"     
@@ -79,7 +79,7 @@ public class Duenio
 
     private void darDeAltaPeriferico()
     {   
-        String tipo="";
+        String tipo;
         String opcion;
         String descripcion="Periferico";
         String mensaje;
@@ -88,9 +88,8 @@ public class Duenio
 
       do
       {
-
           EntradaYSalida.mostrarMensaje("\n----Perifericos----\n");
-           EntradaYSalida.mostrarMensaje("descripcion: "+descripcion+"\n");      
+          EntradaYSalida.mostrarMensaje("descripcion: "+descripcion+"\n");      
           cantidadStock=EntradaYSalida.leerDatoEntero("Ingrese la cantidad stock: ");
           precioUnitario=EntradaYSalida.leerDatoDouble("Ingrese el precio Unitario: "); 
         
@@ -100,51 +99,47 @@ public class Duenio
                                     + "{3} Monitor\n"
                                     + "[4] WebCam\n"
                                     +"Ingrese el tipo");
-        tipo=EntradaYSalida.leerCadena(mensaje);    
+        tipo = EntradaYSalida.leerCadena(mensaje);    
 
-       
 	 switch (tipo)
-          {
+         {
               case "1" : 
                       tipo="Teclado";                        
-                break;
-                
+                break;           
               case "2":
-                        tipo="Mouse";;
+                      tipo="Mouse";;
                 break;
               case "3":
-                       tipo="Monitor";
+                      tipo="Monitor";
                 break;
               case "4":
-                       tipo="WebCam";
+                      tipo="WebCam";
                 break;
-         }
+          }
 
-                
-        tienda.setPeriferico(descripcion, cantidadStock, precioUnitario,tipo);
-        
-        opcion = EntradaYSalida.leerCadena("\nDesea continuar[s/n]?: ");
+          tienda.setPeriferico(tipo, cantidadStock, precioUnitario, descripcion);    
+          opcion = EntradaYSalida.leerCadena("\nDesea continuar[s/n]?: ");
         
         } while( opcion.equals("s") || opcion.equals("S"));
             
     }
 
-
     private void darDeAltaComponente() 
     {
         int opcion;
         String mensaje;
-       do{ 
-        mensaje= "\n----Menu de Componentes----\n"
+        
+       do
+       { 
+         mensaje= "\n----Menu de Componentes----\n"
                        +"[1] RAM\n"
                        +"[2] Procesador\n"
                        +"[3] Disco\n"
                        +"[4] Placa de Video\n"       
                        +"[5] Salir\n"
                        +"Digite una opcion: ";
-       opcion= EntradaYSalida.leerDatoEntero(mensaje);
-
-        
+        opcion= EntradaYSalida.leerDatoEntero(mensaje);
+    
           switch (opcion)
           {
               case 1:
@@ -163,7 +158,7 @@ public class Duenio
 
     } while(!(opcion == 5));  
         
-    }
+  }
 
     private void darDeAltaRam()
     { 
@@ -196,8 +191,7 @@ public class Duenio
     }
    
     private void darDeAltaProcesador()
-    { 
-        
+    {   
         String fabricante;
         String modelo;
         String frecuenciaMaxima;
@@ -209,7 +203,7 @@ public class Duenio
       do
       {
         EntradaYSalida.mostrarMensaje("\n----Procesador----\n");
-        EntradaYSalida.leerCadena("descripcion: "+descripcion+"\n"); 
+        EntradaYSalida.mostrarMensaje("descripcion: "+descripcion+"\n"); 
         cantidadStock=EntradaYSalida.leerDatoEntero("Ingrese la cantidad stock: ");
         precioUnitario=EntradaYSalida.leerDatoDouble("Ingrese el precio Unitario: ");  
         fabricante=EntradaYSalida.leerCadena("Ingresar el fabricante: ");          
@@ -223,16 +217,15 @@ public class Duenio
             
     }
 
-    private void darDeAltaDisco() {
-        String marca;
-        String tipo="";
+    private void darDeAltaDisco() 
+    {
+        String marca,tipo;
         int capacidad;
         String descripcion="Disco";
         int cantidadStock;
         double precioUnitario;
         String opcion;
     
-
       do
       {
         EntradaYSalida.mostrarMensaje("\n----Disco----\n");
@@ -240,29 +233,25 @@ public class Duenio
         cantidadStock=EntradaYSalida.leerDatoEntero("Ingrese la cantidad stock: ");
         precioUnitario=EntradaYSalida.leerDatoDouble("Ingrese el precio Unitario: "); 
         marca=EntradaYSalida.leerCadena("Ingresar a marca: ");
-        
         EntradaYSalida.mostrarMensaje("\n---Tipo---\n"
                                     + "[1] Magnetico\n"
                                     + "[2] SSD\n");
-        tipo=EntradaYSalida.leerCadena("Ingresar el tipo");    
+        tipo=EntradaYSalida.leerCadena("Ingresar el tipo: ");    
 
         if(tipo.equals("1"))
-        {
-          tipo="Magnetico";
-        }
+            tipo="Magnetico";
+        
         else if(tipo.equals("2"))
-        {
-          tipo="SSD";     
-        }
-         
-        capacidad=EntradaYSalida.leerDatoEntero("Ingresar la capacidad");      
+            tipo="SSD";     
+        
+        capacidad=EntradaYSalida.leerDatoEntero("Ingresar la capacidad: ");      
         tienda.setDisco(descripcion, cantidadStock, precioUnitario,marca,tipo,capacidad);
         opcion=EntradaYSalida.leerCadena("\nDesea continuar[s/n]?: ");
 
         } while( opcion.equals("s") || opcion.equals("S"));
     }                
 
-  private void darDeAltaPlacaVideo()
+    private void darDeAltaPlacaVideo()
     {
         String fabricante;
         String modelo;
@@ -279,8 +268,8 @@ public class Duenio
         cantidadStock=EntradaYSalida.leerDatoEntero("Ingrese la cantidad stock: ");
         precioUnitario=EntradaYSalida.leerDatoDouble("Ingrese el precio Unitario: ");  
         fabricante=EntradaYSalida.leerCadena("Ingresar el fabricante: ");          
-        modelo=EntradaYSalida.leerCadena("Ingresar el modelo");
-        capacidadMemoria=EntradaYSalida.leerDatoEntero("Ingresar la capacidad de memoria");
+        modelo=EntradaYSalida.leerCadena("Ingresar el modelo: ");
+        capacidadMemoria=EntradaYSalida.leerDatoEntero("Ingresar la capacidad de memoria: ");
 	          
         tienda.setPlacaVideo(descripcion, cantidadStock, precioUnitario,fabricante,modelo,capacidadMemoria);
         opcion=EntradaYSalida.leerCadena("\nDesea continuar[s/n]?: ");
@@ -289,9 +278,8 @@ public class Duenio
             
     }
     
-  public void menuStockProductos()
-    {
-      
+    public void menuStockProductos()
+    { 
        int opcion;
        String mensaje;
        
@@ -315,7 +303,7 @@ public class Duenio
                   tienda.mostrarStockComponentes();
              break;
             case 3:
-                  menuStockComputadoras();
+                  tienda.mostrarStockComputadoras();
              break;
             case 4:
                   tienda.mostrarStockGeneral();
@@ -328,71 +316,37 @@ public class Duenio
        } while (!(opcion == 4));
 
     }
-public void menuStockComputadoras()
-    {
-      
-       int opcion;
-       String mensaje;
-       
-       do
-       { 
-             mensaje="\n----menu Stock Computadoras----\n"
-                    +"[1] Stock Laptop\n"
-                    +"[2] Stock Desktop\n"
-                    +"[3] Stock Total de computadoras\n"
-                    +"[4] Salir\n"
-                    +"Digite una opcion: ";
-         opcion = EntradaYSalida.leerDatoEntero(mensaje);
-        
-         switch (opcion)
-         {
-            case 1:
-                  tienda.mostrarStockLaptop();
-             break;
-            case 2:
-                  tienda.mostrarStockDesktop();
-             break;
-            case 3:
-                  tienda.mostrarStockTotalComputadoras();
-             break;
-            case 4:
-                  EntradaYSalida.mostrarMensaje("salir");
-             break;
-         }
-       
-       } while (!(opcion == 4));
-
-    }
+  
     private void darDeAltaComputadora()
     {
         String marca;
-        String tipo="";
-        String descripcion="Computadora";
+        String tipo;
         double precioUnitario;
         String modelo;
         String tamanioPantalla;
-        String opcion="";
+        String opcion;
     
 
       do
       {
         EntradaYSalida.mostrarMensaje("\n----Computadora----\n");
-        EntradaYSalida.mostrarMensaje("descripcion: "+descripcion+"\n"); 
+         
         EntradaYSalida.mostrarMensaje("\n---Clasificados---\n"
                                     + "[1] Laptop\n"
                                     + "[2] Desktop\n");
-        tipo=EntradaYSalida.leerCadena("Ingresar el tipo");    
+        tipo=EntradaYSalida.leerCadena("Ingresar el tipo: ");    
  
-         if(tipo.equals("1"))
+        if(tipo.equals("1"))
         {
-            
-        marca = EntradaYSalida.leerCadena("Ingresar a marca: ");
-        modelo = EntradaYSalida.leerCadena("Ingresar a modelo: ");
-        tamanioPantalla = EntradaYSalida.leerCadena("Ingresar el tamaño de la pantalla: ");
-        precioUnitario=EntradaYSalida.leerDatoDouble("Ingrese el precio Unitario: ");
-//        tienda.setLaptop(descripcion,tipo, cantidadStock,marca,modelo,tamanioPantalla,precioUnitario);
+          EntradaYSalida.mostrarMensaje("descripcion: Laptop \n");  
+          marca = EntradaYSalida.leerCadena("Ingresar a marca: ");
+          modelo = EntradaYSalida.leerCadena("Ingresar a modelo: ");
+          tamanioPantalla = EntradaYSalida.leerCadena("Ingresar el tamaño de la pantalla: ");
+          precioUnitario=EntradaYSalida.leerDatoDouble("Ingrese el precio Unitario: ");
+          tienda.setLaptop("Laptop", 1, marca, modelo, tamanioPantalla,
+                            precioUnitario);
 
-        }
+       }
        else if(tipo.equals("2"))
        {
            // en precioUnitario va el precio despues de hacer el descuento del 15%...          
