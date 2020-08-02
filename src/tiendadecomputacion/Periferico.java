@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tiendadecomputacion2;
+package tiendadecomputacion;
 
 /**
  *
@@ -13,11 +13,13 @@ public class Periferico extends Producto
 {
     private String tipo;
   
-    public String getTipo() {
+    public String getTipo() 
+    {
         return tipo;
     }
 
-    public void setTipo(String tipo) {
+    public void setTipo(String tipo) 
+    {
         this.tipo = tipo;
     }
     

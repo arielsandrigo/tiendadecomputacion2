@@ -1,4 +1,4 @@
-package tiendadecomputacion2;
+package tiendadecomputacion;
 
 public class Componente extends Producto
 {

@@ -1,4 +1,4 @@
-package tiendadecomputacion2;
+package tiendadecomputacion;
 
 import java.util.ArrayList;
 
@@ -51,17 +51,17 @@ public class Producto
      * @param tipo
      * @return p of type Productos
      */
-    public Producto altaPeriferico(String tipo, int cantidadStock, double precioUnitario,String descripcion) 
+    public Producto altaPeriferico(String descripcion, int cantidadStock, double precioUnitario) 
     {
-        Periferico periferico;
+        //Periferico periferico;
         FactoriaDeProductos factoria = FactoriaDeProductos.getInstancia();
         Producto p = null;
         
         try 
         {        
              p = factoria.crearProducto(descripcion, cantidadStock, precioUnitario);
-             periferico=(Periferico) p;
-             periferico.setTipo(tipo);
+             //periferico=(Periferico) p;
+             //periferico.setTipo(descripcion);
         } catch (ReflectiveOperationException e) 
         {
             EntradaYSalida.mostrarMensaje(" No se pudo crear el producto");
@@ -187,7 +187,6 @@ public class Producto
 
     Producto altaDesktop(ArrayList<Producto> listaProductos,String descripcion,int cantidadStock, double precioUnitario) 
     {
-        Desktop desktop;
         FactoriaDeProductos factoria = FactoriaDeProductos.getInstancia();
         Producto p = null;
         
@@ -195,7 +194,6 @@ public class Producto
         {
             p = factoria.crearProducto(descripcion, cantidadStock, precioUnitario);
             p = setArmarDesktop(p,listaProductos);
-            desktop = (Desktop) p;
              
         } catch (ReflectiveOperationException e) 
         {
@@ -249,6 +247,7 @@ public class Producto
 
             }    
         }
+        
         return p;
         
     }
@@ -268,51 +267,62 @@ public class Producto
                 case "Procesador": 
                    cantidad = listaProductos.get(i).getCantidadStock() - 1;
                    listaProductos.get(i).setCantidadStock(cantidad);
-                   Procesador procesador = (Procesador)listaProductos.get(i); 
-                   desktop.setProcesador(procesador);
+                   desktop.setProcesador((Procesador)listaProductos.get(i));
                    cantidad = 0;
-                   precioDesktop+= procesador.getPrecioUnitario();
+                   precioDesktop+= listaProductos.get(i).getPrecioUnitario();
 
                  break;       
                 case "Ram": 
                    cantidad = listaProductos.get(i).getCantidadStock() - 1;
                    listaProductos.get(i).setCantidadStock(cantidad);
-                   Ram ram = (Ram)listaProductos.get(i);        
-                   desktop.setRam(ram);
+                   desktop.setRam((Ram)listaProductos.get(i));
                    cantidad = 0;
-                   precioDesktop+= ram.getPrecioUnitario();
+                   precioDesktop+= listaProductos.get(i).getPrecioUnitario();
                    break;
                     
                 case "Disco": 
                    cantidad = listaProductos.get(i).getCantidadStock() - 1;
                    listaProductos.get(i).setCantidadStock(cantidad);
-                   Disco disco = (Disco)listaProductos.get(i);        
-                   desktop.setDisco(disco);
+                   desktop.setDisco((Disco)listaProductos.get(i));
                    cantidad = 0;
-                   precioDesktop+=disco.getPrecioUnitario();
+                   precioDesktop+= listaProductos.get(i).getPrecioUnitario();
                    break;
                    
                 case "PlacaVideo":
                    cantidad = listaProductos.get(i).getCantidadStock() - 1;
                    listaProductos.get(i).setCantidadStock(cantidad);
-                   PlacaVideo placaVideo = (PlacaVideo)listaProductos.get(i);        
-                   desktop.setPlacaVideo(placaVideo);
+                   desktop.setPlacaVideo((PlacaVideo)listaProductos.get(i));
                    cantidad = 0;
-                   precioDesktop+=placaVideo.getPrecioUnitario();
+                   precioDesktop+= listaProductos.get(i).getPrecioUnitario();
                     break; 
-                case "Periferico":
+                case "Mouse":
+                   cantidad = listaProductos.get(i).getCantidadStock() - 1;
+                   listaProductos.get(i).setCantidadStock(cantidad); 
+                   desktop.setMouse((Mouse)listaProductos.get(i));
+                   cantidad = 0;
+                    break;
+                case "Teclado":
                    cantidad = listaProductos.get(i).getCantidadStock() - 1;
                    listaProductos.get(i).setCantidadStock(cantidad);
-                   Periferico periferico = (Periferico)listaProductos.get(i);
-                   periferico.setTipo("Teclado");
-                   periferico.setTipo("Mouse");
-                   periferico.setTipo("Monitor");
-                   periferico.setTipo("WebCam");
+                   desktop.setTeclado((Teclado)listaProductos.get(i));
                    cantidad = 0;
-                    break;   
+                    break;
+                case "Monitor":
+                   cantidad = listaProductos.get(i).getCantidadStock() - 1;
+                   listaProductos.get(i).setCantidadStock(cantidad);        
+                   desktop.setMonitor((Monitor)listaProductos.get(i));
+                   cantidad = 0;
+                    break;
+                case "Webcam":
+                   cantidad = listaProductos.get(i).getCantidadStock() - 1;
+                   listaProductos.get(i).setCantidadStock(cantidad);        
+                   desktop.setWebcam((Webcam)listaProductos.get(i));
+                   cantidad = 0;
+                    break;
 
             }   
-          desktop.setPrecioUnitario(precioDesktop*(100-15)/100);
+         
+            desktop.setPrecioUnitario(precioDesktop*(100-15)/100);
         }
         
         return p;

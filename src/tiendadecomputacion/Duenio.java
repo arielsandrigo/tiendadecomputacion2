@@ -1,4 +1,4 @@
-package tiendadecomputacion2;
+package tiendadecomputacion;
 
 public class Duenio 
 {
@@ -24,7 +24,7 @@ public class Duenio
              mensaje="\n\n----Bienvenidos----\n"
                     +"[1] Dar de alta producto\n"
                     +"[2] Mostrar Stock general de productos\n"
-                    +"[3] Mostrar Stock general de productos\n"
+                    +"[3] Venta de productos\n"
                     +"[4] Salir\n"
                     +"Digite una opcion: ";
          opcion = EntradaYSalida.leerDatoEntero(mensaje);
@@ -38,7 +38,7 @@ public class Duenio
                    tienda.mostrarStockGeneral();
              break;
             case 3:
-                  //
+                  menuVentaProductos();
              break;
             case 4:
                   EntradaYSalida.mostrarMensaje("salir");
@@ -85,7 +85,7 @@ public class Duenio
     {   
         String tipo;
         String opcion;
-        String descripcion="Periferico";
+        String descripcion;
         String mensaje;
         int cantidadStock;
         double precioUnitario;
@@ -93,35 +93,35 @@ public class Duenio
       do
       {
           EntradaYSalida.mostrarMensaje("\n----Alta Perifericos----\n");
-          EntradaYSalida.mostrarMensaje("descripcion: "+descripcion+"\n");      
+          EntradaYSalida.mostrarMensaje("descripcion: Periferico\n");      
           cantidadStock=EntradaYSalida.leerDatoEntero("Ingrese la cantidad stock: ");
           precioUnitario=EntradaYSalida.leerDatoDouble("Ingrese el precio Unitario: "); 
         
-                           mensaje=("\n---Tipo---\n"
+                          mensaje = ("\n---Tipo---\n"
                                     + "[1] Teclado\n"
                                     + "[2] Mouse\n"
                                     + "{3} Monitor\n"
                                     + "[4] WebCam\n"
                                     +"Ingrese el tipo: ");
-        tipo = EntradaYSalida.leerCadena(mensaje);    
+         descripcion = EntradaYSalida.leerCadena(mensaje);    
 
-	 switch (tipo)
+	 switch (descripcion)
          {
               case "1" : 
-                      tipo="Teclado";                        
+                      descripcion="Teclado";                        
                 break;           
               case "2":
-                      tipo="Mouse";;
+                      descripcion="Mouse";;
                 break;
               case "3":
-                      tipo="Monitor";
+                      descripcion="Monitor";
                 break;
               case "4":
-                      tipo="WebCam";
+                      descripcion="WebCam";
                 break;
           }
 
-          tienda.setPeriferico(tipo, cantidadStock, precioUnitario, descripcion);    
+          tienda.setPeriferico(descripcion, cantidadStock, precioUnitario);    
           opcion = EntradaYSalida.leerCadena("\nDesea continuar[s/n]?: ");
         
         } while( opcion.equals("s") || opcion.equals("S"));
@@ -315,13 +315,32 @@ public class Duenio
        else if(tipo.equals("2"))
        {
            // en precioUnitario va el precio despues de hacer el descuento del 15%...          
-          tienda.setDesktop("Desktop",1,precioUnitario);
+          tienda.setDesktop("Desktop", 1, precioUnitario);
        }
 
         opcion=EntradaYSalida.leerCadena("\nDesea continuar[s/n]?: ");
 
         } while( opcion.equals("s") || opcion.equals("S"));
     }
+
+    private void menuVentaProductos() 
+    {
+        String opcion;
+        int indiceProducto;
+        
+        do
+        {
+           EntradaYSalida.mostrarMensaje("\n----Lista de productos----");
+           tienda.mostrarStockGeneral();
+        
+           indiceProducto =  EntradaYSalida.leerDatoEntero("\n\nDigite opción: ");
+           tienda.descontarProducto(indiceProducto - 1);
+           EntradaYSalida.mostrarMensaje("¡¡Compra Exitosa!!");
+           opcion=EntradaYSalida.leerCadena("\n\nDesea continuar[s/n]?: ");
+    
+        } while( opcion.equals("s") || opcion.equals("S"));
+    }
+    
     
 
     
