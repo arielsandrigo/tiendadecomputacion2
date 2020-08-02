@@ -58,10 +58,10 @@ public class Producto
         Producto p = null;
         
         try 
-        {
-             p = factoria.crearProducto(tipo, cantidadStock, precioUnitario);
+        {        
+             p = factoria.crearProducto(descripcion, cantidadStock, precioUnitario);
              periferico=(Periferico) p;
-             periferico.setTipo(descripcion);
+             periferico.setTipo(tipo);
         } catch (ReflectiveOperationException e) 
         {
             EntradaYSalida.mostrarMensaje(" No se pudo crear el producto");
@@ -73,7 +73,7 @@ public class Producto
     
     public Producto altaRam(String descripcion,int cantidadStock, double precioUnitario,String marca,String tecnologia,String FrecuenciaMaxima,int capacidad)
     {
-       Ram ram ;
+        Ram ram ;
         FactoriaDeProductos factoria = FactoriaDeProductos.getInstancia();
         Producto p = null;
         try 
@@ -96,7 +96,7 @@ public class Producto
     
     public Producto altaProcesador(String descripcion,int cantidadStock, double precioUnitario,String fabricante,String modelo,String FrecuenciaMaxima)
     {
-       Procesador procesador ;
+        Procesador procesador;
         FactoriaDeProductos factoria = FactoriaDeProductos.getInstancia();
         Producto p = null;
         try 
@@ -111,13 +111,13 @@ public class Producto
         {
             EntradaYSalida.mostrarMensaje(" No se pudo crear el producto");
             e.printStackTrace();     
-    }
+        }
         return p;
 }
       
     public Producto altaDisco(String descripcion,int cantidadStock, double precioUnitario,String marca,String tipo,int capacidad)
     {
-        Disco disco ;
+        Disco disco;
         FactoriaDeProductos factoria = FactoriaDeProductos.getInstancia();
         Producto p = null;
         try 
@@ -151,10 +151,10 @@ public class Producto
              placaVideo.setCapacidadMemoria(capacidadMemoria);
 
         } catch (ReflectiveOperationException e) 
-        {
+          {
             EntradaYSalida.mostrarMensaje(" No se pudo crear el producto");
             e.printStackTrace();     
-        }
+          }
         
         return p;
     }
@@ -177,25 +177,25 @@ public class Producto
             laptop.setPrecioUnitario(precioUnitario);
              
         } catch (ReflectiveOperationException e) 
-        {
+         {
             EntradaYSalida.mostrarMensaje(" No se pudo crear el producto");
             e.printStackTrace();     
-        }
+         }
         
         return p;
     }
 
-    Producto altaDesktop(String descripcion, String tipo, int cantidadStock, double precioUnitario) 
+    Producto altaDesktop(ArrayList<Producto> listaProductos,String descripcion,int cantidadStock, double precioUnitario) 
     {
-        Laptop laptop;
+        Desktop desktop;
         FactoriaDeProductos factoria = FactoriaDeProductos.getInstancia();
         Producto p = null;
         
         try 
         {
             p = factoria.crearProducto(descripcion, cantidadStock, precioUnitario);
-            laptop = (Laptop) p;
-            laptop.setPrecioUnitario(precioUnitario);
+            p = setArmarDesktop(p,listaProductos);
+            desktop = (Desktop) p;
              
         } catch (ReflectiveOperationException e) 
         {
@@ -245,10 +245,76 @@ public class Producto
                    PlacaVideo placaVideo = (PlacaVideo)listaProductos.get(i);        
                    laptop.setPlacaVideo(placaVideo);
                    cantidad = 0;
-                    break;  
+                    break; 
+
             }    
         }
         return p;
+        
     }
     
+     private Producto setArmarDesktop(Producto p, ArrayList<Producto> listaProductos)
+    {
+        Desktop  desktop = (Desktop) p; 
+        int cantidad;
+        double precioDesktop = 0.0;
+        
+        for (int i = 0; i < listaProductos.size(); i++)
+        {
+            String componente = listaProductos.get(i).getDescripcion();
+           
+            switch(componente)
+            {
+                case "Procesador": 
+                   cantidad = listaProductos.get(i).getCantidadStock() - 1;
+                   listaProductos.get(i).setCantidadStock(cantidad);
+                   Procesador procesador = (Procesador)listaProductos.get(i); 
+                   desktop.setProcesador(procesador);
+                   cantidad = 0;
+                   precioDesktop+= procesador.getPrecioUnitario();
+
+                 break;       
+                case "Ram": 
+                   cantidad = listaProductos.get(i).getCantidadStock() - 1;
+                   listaProductos.get(i).setCantidadStock(cantidad);
+                   Ram ram = (Ram)listaProductos.get(i);        
+                   desktop.setRam(ram);
+                   cantidad = 0;
+                   precioDesktop+= ram.getPrecioUnitario();
+                   break;
+                    
+                case "Disco": 
+                   cantidad = listaProductos.get(i).getCantidadStock() - 1;
+                   listaProductos.get(i).setCantidadStock(cantidad);
+                   Disco disco = (Disco)listaProductos.get(i);        
+                   desktop.setDisco(disco);
+                   cantidad = 0;
+                   precioDesktop+=disco.getPrecioUnitario();
+                   break;
+                   
+                case "PlacaVideo":
+                   cantidad = listaProductos.get(i).getCantidadStock() - 1;
+                   listaProductos.get(i).setCantidadStock(cantidad);
+                   PlacaVideo placaVideo = (PlacaVideo)listaProductos.get(i);        
+                   desktop.setPlacaVideo(placaVideo);
+                   cantidad = 0;
+                   precioDesktop+=placaVideo.getPrecioUnitario();
+                    break; 
+                case "Periferico":
+                   cantidad = listaProductos.get(i).getCantidadStock() - 1;
+                   listaProductos.get(i).setCantidadStock(cantidad);
+                   Periferico periferico = (Periferico)listaProductos.get(i);
+                   periferico.setTipo("Teclado");
+                   periferico.setTipo("Mouse");
+                   periferico.setTipo("Monitor");
+                   periferico.setTipo("WebCam");
+                   cantidad = 0;
+                    break;   
+
+            }   
+          desktop.setPrecioUnitario(precioDesktop*(100-15)/100);
+        }
+        
+        return p;
+  }
 }

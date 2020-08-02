@@ -21,10 +21,11 @@ public class Duenio
        
        do
        { 
-             mensaje="\n----Bienvevidos----\n"
+             mensaje="\n\n----Bienvenidos----\n"
                     +"[1] Dar de alta producto\n"
-                    +"[2] Mostrar Stock de productos\n"
-                    +"[3] Salir\n"
+                    +"[2] Mostrar Stock general de productos\n"
+                    +"[3] Mostrar Stock general de productos\n"
+                    +"[4] Salir\n"
                     +"Digite una opcion: ";
          opcion = EntradaYSalida.leerDatoEntero(mensaje);
         
@@ -34,14 +35,17 @@ public class Duenio
     	          menuAltaProductos();
              break;
             case 2:
-                  menuStockProductos();
+                   tienda.mostrarStockGeneral();
              break;
             case 3:
+                  //
+             break;
+            case 4:
                   EntradaYSalida.mostrarMensaje("salir");
              break;
          }
        
-       } while (!(opcion == 3));
+       } while (!(opcion == 4));
 
     }
 
@@ -52,7 +56,7 @@ public class Duenio
 
         do
        {
-          mensaje="\n----Menu de productos----\n"
+          mensaje="\n----Menu alta productos----\n"
                          +"[1] Periferico\n"
                          +"[2] Componente\n"
                          +"[3] Computadora\n"
@@ -88,7 +92,7 @@ public class Duenio
 
       do
       {
-          EntradaYSalida.mostrarMensaje("\n----Perifericos----\n");
+          EntradaYSalida.mostrarMensaje("\n----Alta Perifericos----\n");
           EntradaYSalida.mostrarMensaje("descripcion: "+descripcion+"\n");      
           cantidadStock=EntradaYSalida.leerDatoEntero("Ingrese la cantidad stock: ");
           precioUnitario=EntradaYSalida.leerDatoDouble("Ingrese el precio Unitario: "); 
@@ -98,7 +102,7 @@ public class Duenio
                                     + "[2] Mouse\n"
                                     + "{3} Monitor\n"
                                     + "[4] WebCam\n"
-                                    +"Ingrese el tipo");
+                                    +"Ingrese el tipo: ");
         tipo = EntradaYSalida.leerCadena(mensaje);    
 
 	 switch (tipo)
@@ -131,7 +135,7 @@ public class Duenio
         
        do
        { 
-         mensaje= "\n----Menu de Componentes----\n"
+         mensaje= "\n----Menu alta Componentes----\n"
                        +"[1] RAM\n"
                        +"[2] Procesador\n"
                        +"[3] Disco\n"
@@ -278,50 +282,11 @@ public class Duenio
             
     }
     
-    public void menuStockProductos()
-    { 
-       int opcion;
-       String mensaje;
-       
-       do
-       { 
-             mensaje="\n----menu stock----\n"
-                    +"[1] Stock perifericos\n"
-                    +"[2] Stock componentes\n"
-                    +"[3] Stock computadoras\n"
-                    +"[4] Stock general de productos\n"
-                    +"[5] Salir\n"
-                    +"Digite una opcion: ";
-         opcion = EntradaYSalida.leerDatoEntero(mensaje);
-        
-         switch (opcion)
-         {
-            case 1:
-                  tienda.mostrarStockPeriferico();
-             break;
-            case 2:
-                  tienda.mostrarStockComponentes();
-             break;
-            case 3:
-                  tienda.mostrarStockComputadoras();
-             break;
-            case 4:
-                  tienda.mostrarStockGeneral();
-             break;
-            case 5:
-                  EntradaYSalida.mostrarMensaje("salir");
-             break;
-         }
-       
-       } while (!(opcion == 4));
-
-    }
-  
     private void darDeAltaComputadora()
     {
         String marca;
         String tipo;
-        double precioUnitario;
+        double precioUnitario=0;
         String modelo;
         String tamanioPantalla;
         String opcion;
@@ -350,7 +315,7 @@ public class Duenio
        else if(tipo.equals("2"))
        {
            // en precioUnitario va el precio despues de hacer el descuento del 15%...          
-          //  tienda.setDesktop(descripcion,tipo, cantidadStock,precioUnitario);
+          tienda.setDesktop("Desktop",1,precioUnitario);
        }
 
         opcion=EntradaYSalida.leerCadena("\nDesea continuar[s/n]?: ");

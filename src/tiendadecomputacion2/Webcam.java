@@ -5,7 +5,7 @@
  */
 package tiendadecomputacion2;
 
-public class Webcam extends Periferico
+public class WebCam extends Periferico
 {
     
 }

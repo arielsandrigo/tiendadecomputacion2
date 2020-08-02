@@ -12,11 +12,7 @@ package tiendadecomputacion2;
 public class Periferico extends Producto 
 {
     private String tipo;
-    public Periferico()
-    {
-        
-    }
-
+  
     public String getTipo() {
         return tipo;
     }

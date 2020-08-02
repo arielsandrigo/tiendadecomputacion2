@@ -48,16 +48,16 @@ public class Tienda
                                                  modelo, tamanioPantalla, precioUnitario));                               
     }
     
-    public void setDesktop(String descripcion,String tipo,int cantidadStock, double precioUnitario)
+    public void setDesktop(String descripcion,int cantidadStock, double precioUnitario)
     { 
-       this.listaProductos.add(producto.altaDesktop(descripcion,tipo,cantidadStock,precioUnitario));
+       this.listaProductos.add(producto.altaDesktop(listaProductos,descripcion,cantidadStock,precioUnitario));
                                  
     }
     
     public void mostrarStockGeneral() 
     {
-        mostrarStockComponentes();
         mostrarStockPeriferico();
+        mostrarStockComponentes();
         mostrarStockComputadoras();
     }
 
@@ -141,7 +141,6 @@ public class Tienda
     
     public void mostrarStockComputadoras()       
     {
-       Desktop desktop;
        Laptop laptop;
   
        for (Producto p: listaProductos)
@@ -155,20 +154,16 @@ public class Tienda
                             +"  ||Marca: "+ laptop.getMarca()
                             +"  ||Modelo:  "+laptop.getModelo()
                             +"  ||Tamaño de pantalla :  "+laptop.getTamanioPantalla()
-                            +"  ||Precio $ :  "+p.getPrecioUnitario());
-                            //+"  || Características"+laptop.getDisco().
-                
-                
+                            +"  ||Precio: $"+p.getPrecioUnitario());
                 
            } 
        
            else if(p.getDescripcion().equals("Desktop"))
            {
-                desktop=(Desktop) p;
                 EntradaYSalida.mostrarMensaje(""
-                    + " \nstock: "+ p.getCantidadStock()
+                     + " \nstock: "+ p.getCantidadStock()
                             +"  ||Descripcion: "+ p.getDescripcion()
-                            +"  ||Precio $ :  "+p.getPrecioUnitario());
+                            +"  ||Precio: $"+p.getPrecioUnitario());
            } 
        }
        
