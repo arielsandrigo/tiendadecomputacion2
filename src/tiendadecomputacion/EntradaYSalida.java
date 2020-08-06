@@ -22,18 +22,16 @@ public class EntradaYSalida
        return (entrada == null ? "" : entrada);
    }
    
-   public static int leerDatoEntero(String mensaje)
+   public static int leerEntero(String mensaje)
     {
         System.out.print(mensaje);
         return entrada.nextInt();
     }   
    
-   public static float leerDatoDouble(String mensaje) 
+   public static float leerDouble(String mensaje) 
     {
         System.out.print(mensaje);
         return (float) entrada.nextDouble();
-        
     }
-     
- 
+
 }

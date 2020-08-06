@@ -3,7 +3,7 @@ package tiendadecomputacion;
 public class Duenio 
 {
     private Tienda tienda = null;    
-     
+    private Producto producto= new Producto();
     public Duenio()
     {
            
@@ -27,7 +27,7 @@ public class Duenio
                     +"[3] Venta de productos\n"
                     +"[4] Salir\n"
                     +"Digite una opcion: ";
-         opcion = EntradaYSalida.leerDatoEntero(mensaje);
+         opcion = EntradaYSalida.leerEntero(mensaje);
         
          switch (opcion)
          {
@@ -62,7 +62,7 @@ public class Duenio
                          +"[3] Computadora\n"
                          +"[4] Salir\n"     
                          +"\nDigite una opcion: ";
-          opcion = EntradaYSalida.leerDatoEntero(mensaje);
+          opcion = EntradaYSalida.leerEntero(mensaje);
         
           switch (opcion)
           {
@@ -83,25 +83,38 @@ public class Duenio
 
     private void darDeAltaPeriferico()
     {   
-        String tipo;
-        String opcion;
-        String descripcion;
-        String mensaje;
-        int cantidadStock;
-        double precioUnitario;
+         String tipo;
+         String opcion;
+         String descripcion;
+         String mensaje;
+         int  cantidadStock;
+         double precioUnitario=0.0;
+         String fechaCarga;
 
       do
       {
           EntradaYSalida.mostrarMensaje("\n----Alta Perifericos----\n");
-          EntradaYSalida.mostrarMensaje("descripcion: Periferico\n");      
-          cantidadStock=EntradaYSalida.leerDatoEntero("Ingrese la cantidad stock: ");
-          precioUnitario=EntradaYSalida.leerDatoDouble("Ingrese el precio Unitario: "); 
-        
+          EntradaYSalida.mostrarMensaje("descripcion: Periferico\n");
+          cantidadStock = EntradaYSalida.leerEntero("Ingrese la cantidad stock: ");
+          while(cantidadStock<=0)
+          {
+          cantidadStock = EntradaYSalida.leerEntero("\nLa cantidad ingresada no es válida\n"
+                                                   + "\nIngrese nuevamente: ");
+          }
+          precioUnitario = EntradaYSalida.leerDouble("Ingrese el precio Unitario: "); 
+          while(precioUnitario<=0)
+          {
+          precioUnitario = EntradaYSalida.leerDouble("\nEl precio ingresado no es válido\n"
+                                                   + "\nIngrese nuevamente: ");
+          }
+          
+          fechaCarga=EntradaYSalida.leerCadena("Ingrese la fecha dd/mm/aaaa: ");
+                  
                           mensaje = ("\n---Tipo---\n"
                                     + "[1] Teclado\n"
                                     + "[2] Mouse\n"
                                     + "{3} Monitor\n"
-                                    + "[4] WebCam\n"
+                                    + "[4] Webcam\n"
                                     +"Ingrese el tipo: ");
          descripcion = EntradaYSalida.leerCadena(mensaje);    
 
@@ -117,16 +130,16 @@ public class Duenio
                       descripcion="Monitor";
                 break;
               case "4":
-                      descripcion="WebCam";
+                      descripcion="Webcam";
                 break;
           }
 
-          tienda.setPeriferico(descripcion, cantidadStock, precioUnitario);    
+          tienda.setPeriferico(descripcion, cantidadStock, precioUnitario,fechaCarga);    
           opcion = EntradaYSalida.leerCadena("\nDesea continuar[s/n]?: ");
         
         } while( opcion.equals("s") || opcion.equals("S"));
             
-    }
+}
 
     private void darDeAltaComponente() 
     {
@@ -142,7 +155,7 @@ public class Duenio
                        +"[4] Placa de Video\n"       
                        +"[5] Salir\n"
                        +"Digite una opcion: ";
-        opcion= EntradaYSalida.leerDatoEntero(mensaje);
+        opcion= EntradaYSalida.leerEntero(mensaje);
     
           switch (opcion)
           {
@@ -175,19 +188,36 @@ public class Duenio
         int cantidadStock;
         double precioUnitario;
         String opcion;
+        String fechaCarga;
 
       do
       {
         EntradaYSalida.mostrarMensaje("\n----Ram----\n");
         EntradaYSalida.mostrarMensaje("Descripcion: "+descripcion+"\n");       
-        cantidadStock=EntradaYSalida.leerDatoEntero("Ingrese la cantidad stock: ");
-        precioUnitario=EntradaYSalida.leerDatoDouble("Ingrese el precio Unitario: ");  
+        cantidadStock=EntradaYSalida.leerEntero("Ingrese la cantidad stock: ");
+        while(cantidadStock<=0)
+        {
+          cantidadStock = EntradaYSalida.leerEntero("\nLa cantidad ingresada no es válida\n"
+                                                   + "\nIngrese nuevamente: ");
+        }
+        precioUnitario=EntradaYSalida.leerDouble("Ingrese el precio Unitario: "); 
+        while(precioUnitario<=0)
+        {
+          precioUnitario = EntradaYSalida.leerDouble("\nEl precio ingresado no es válido\n"
+                                                   + "\nIngrese nuevamente: ");
+        }
+        fechaCarga=EntradaYSalida.leerCadena("Ingrese la fecha dd/mm/aaaa: "); 
         marca=EntradaYSalida.leerCadena("Ingresar la marca: ");          
         tecnologia=EntradaYSalida.leerCadena("Ingresar la tecnologia:  ");
         frecuenciaMaxima=EntradaYSalida.leerCadena("Ingresar la frecuencia maxima: ");
-        capacidad=EntradaYSalida.leerDatoEntero("Ingrese la capacidad: ");
+        capacidad=EntradaYSalida.leerEntero("Ingrese la capacidad: ");
+         while(capacidad<=0)
+        {
+          capacidad = EntradaYSalida.leerEntero("\nLa capacidad ingresada no es válida\n"
+                                                   + "\nIngrese nuevamente: ");
+        }
          
-        tienda.setRam(descripcion, cantidadStock, precioUnitario,marca,tecnologia,frecuenciaMaxima,capacidad);       
+        tienda.setRam(descripcion, cantidadStock, precioUnitario,marca,tecnologia,frecuenciaMaxima,capacidad,fechaCarga);       
         opcion=EntradaYSalida.leerCadena("\nDesea continuar[s/n]?: ");
        
         } while( opcion.equals("s") || opcion.equals("S"));
@@ -203,18 +233,30 @@ public class Duenio
         int cantidadStock;
         double precioUnitario;
         String opcion;
+        String fechaCarga;
 
       do
       {
         EntradaYSalida.mostrarMensaje("\n----Procesador----\n");
         EntradaYSalida.mostrarMensaje("descripcion: "+descripcion+"\n"); 
-        cantidadStock=EntradaYSalida.leerDatoEntero("Ingrese la cantidad stock: ");
-        precioUnitario=EntradaYSalida.leerDatoDouble("Ingrese el precio Unitario: ");  
+        cantidadStock=EntradaYSalida.leerEntero("Ingrese la cantidad stock: ");
+        while(cantidadStock<=0)
+        {
+          cantidadStock = EntradaYSalida.leerEntero("\nLa cantidad ingresada no es válida\n"
+                                                   + "\nIngrese nuevamente: ");
+        }
+        precioUnitario=EntradaYSalida.leerDouble("Ingrese el precio Unitario: ");
+        while(precioUnitario<=0)
+        {
+          precioUnitario = EntradaYSalida.leerDouble("\nEl precio ingresado no es válido\n"
+                                                   + "\nIngrese nuevamente: ");
+        }
+        fechaCarga = EntradaYSalida.leerCadena("Ingrese la fecha dd/mm/aaaa: ");
         fabricante=EntradaYSalida.leerCadena("Ingresar el fabricante: ");          
         modelo=EntradaYSalida.leerCadena("Ingresar el modelo: ");
         frecuenciaMaxima=EntradaYSalida.leerCadena("Ingresar la frecuencia maxima: ");
 	         
-        tienda.setProcesador(descripcion, cantidadStock, precioUnitario,fabricante,modelo,frecuenciaMaxima);
+        tienda.setProcesador(descripcion, cantidadStock, precioUnitario,fabricante,modelo,frecuenciaMaxima,fechaCarga);
         opcion=EntradaYSalida.leerCadena("\nDesea continuar[s/n]?: ");
         
         } while( opcion.equals("s") || opcion.equals("S"));
@@ -229,13 +271,25 @@ public class Duenio
         int cantidadStock;
         double precioUnitario;
         String opcion;
+        String fechaCarga;
     
       do
       {
         EntradaYSalida.mostrarMensaje("\n----Disco----\n");
         EntradaYSalida.mostrarMensaje("descripcion: "+descripcion+"\n"); 
-        cantidadStock=EntradaYSalida.leerDatoEntero("Ingrese la cantidad stock: ");
-        precioUnitario=EntradaYSalida.leerDatoDouble("Ingrese el precio Unitario: "); 
+        cantidadStock=EntradaYSalida.leerEntero("Ingrese la cantidad stock: ");
+         while(cantidadStock<=0)
+        {
+          cantidadStock = EntradaYSalida.leerEntero("\nLa cantidad ingresada no es válida\n"
+                                                   + "\nIngrese nuevamente: ");
+        }
+        precioUnitario=EntradaYSalida.leerDouble("Ingrese el precio Unitario: "); 
+        while(precioUnitario<=0)
+        {
+          precioUnitario = EntradaYSalida.leerDouble("\nEl precio ingresado no es válido\n"
+                                                   + "\nIngrese nuevamente: ");
+        }
+        fechaCarga = EntradaYSalida.leerCadena("Ingrese la fecha dd/mm/aaaa: ");
         marca=EntradaYSalida.leerCadena("Ingresar a marca: ");
         EntradaYSalida.mostrarMensaje("\n---Tipo---\n"
                                     + "[1] Magnetico\n"
@@ -248,8 +302,14 @@ public class Duenio
         else if(tipo.equals("2"))
             tipo="SSD";     
         
-        capacidad=EntradaYSalida.leerDatoEntero("Ingresar la capacidad: ");      
-        tienda.setDisco(descripcion, cantidadStock, precioUnitario,marca,tipo,capacidad);
+        capacidad=EntradaYSalida.leerEntero("Ingresar la capacidad: ");      
+        while(capacidad<=0)
+        {
+          capacidad = EntradaYSalida.leerEntero("\nLa capacidad ingresada no es válida\n"
+                                                   + "\nIngrese nuevamente: ");
+        } 
+        
+        tienda.setDisco(descripcion, cantidadStock, precioUnitario,marca,tipo,capacidad,fechaCarga);
         opcion=EntradaYSalida.leerCadena("\nDesea continuar[s/n]?: ");
 
         } while( opcion.equals("s") || opcion.equals("S"));
@@ -264,18 +324,35 @@ public class Duenio
         int cantidadStock;
         double precioUnitario;
         String opcion;
+        String fechaCarga;
 
       do
       {
         EntradaYSalida.mostrarMensaje("\n----Placa De Video----\n");
         EntradaYSalida.mostrarMensaje("descripcion: "+descripcion+"\n");   
-        cantidadStock=EntradaYSalida.leerDatoEntero("Ingrese la cantidad stock: ");
-        precioUnitario=EntradaYSalida.leerDatoDouble("Ingrese el precio Unitario: ");  
+        cantidadStock=EntradaYSalida.leerEntero("Ingrese la cantidad stock: ");
+        while(cantidadStock<=0)
+        {
+          cantidadStock = EntradaYSalida.leerEntero("\nLa cantidad ingresada no es válida\n"
+                                                   + "\nIngrese nuevamente: ");
+        }
+        precioUnitario=EntradaYSalida.leerDouble("Ingrese el precio Unitario: "); 
+        while(precioUnitario<=0)
+        {
+          precioUnitario = EntradaYSalida.leerDouble("\nEl precio ingresado no es válido\n"
+                                                   + "\nIngrese nuevamente: ");
+        }
+        fechaCarga = EntradaYSalida.leerCadena("Ingrese la fecha dd/mm/aaaa: ");
         fabricante=EntradaYSalida.leerCadena("Ingresar el fabricante: ");          
         modelo=EntradaYSalida.leerCadena("Ingresar el modelo: ");
-        capacidadMemoria=EntradaYSalida.leerDatoEntero("Ingresar la capacidad de memoria: ");
+        capacidadMemoria=EntradaYSalida.leerEntero("Ingresar la capacidad de memoria: ");
+        while(capacidadMemoria<=0)
+        {
+          capacidadMemoria = EntradaYSalida.leerEntero("\nLa capacidad ingresada no es válida\n"
+                                                   + "\nIngrese nuevamente: ");
+        } 
 	          
-        tienda.setPlacaVideo(descripcion, cantidadStock, precioUnitario,fabricante,modelo,capacidadMemoria);
+        tienda.setPlacaVideo(descripcion, cantidadStock, precioUnitario,fabricante,modelo,capacidadMemoria,fechaCarga);
         opcion=EntradaYSalida.leerCadena("\nDesea continuar[s/n]?: ");
 
         } while( opcion.equals("s") || opcion.equals("S"));
@@ -290,8 +367,8 @@ public class Duenio
         String modelo;
         String tamanioPantalla;
         String opcion;
-    
-
+        String fechaCarga;
+      
       do
       {
         EntradaYSalida.mostrarMensaje("\n----Computadora----\n");
@@ -299,49 +376,74 @@ public class Duenio
         EntradaYSalida.mostrarMensaje("\n---Clasificados---\n"
                                     + "[1] Laptop\n"
                                     + "[2] Desktop\n");
-        tipo=EntradaYSalida.leerCadena("Ingresar el tipo: ");    
- 
+        tipo=EntradaYSalida.leerCadena("Ingresar el tipo: ");  
+        if(producto.getCantidadStock()>0){
+            
         if(tipo.equals("1"))
         {
-          EntradaYSalida.mostrarMensaje("descripcion: Laptop \n");  
-          marca = EntradaYSalida.leerCadena("Ingresar a marca: ");
-          modelo = EntradaYSalida.leerCadena("Ingresar a modelo: ");
-          tamanioPantalla = EntradaYSalida.leerCadena("Ingresar el tamaño de la pantalla: ");
-          precioUnitario=EntradaYSalida.leerDatoDouble("Ingrese el precio Unitario: ");
-          tienda.setLaptop("Laptop", 1, marca, modelo, tamanioPantalla,
-                            precioUnitario);
+        EntradaYSalida.mostrarMensaje("descripcion: Laptop \n");  
+        marca = EntradaYSalida.leerCadena("Ingresar a marca: ");
+        modelo = EntradaYSalida.leerCadena("Ingresar a modelo: ");
+        tamanioPantalla = EntradaYSalida.leerCadena("Ingresar el tamaño de la pantalla: ");
+        precioUnitario=EntradaYSalida.leerDouble("Ingrese el precio Unitario: ");
+        while(precioUnitario<=0)
+        {
+          precioUnitario = EntradaYSalida.leerDouble("\nEl precio ingresado no es válido\n"
+                                                   + "\nIngrese nuevamente: ");
+        }
+        fechaCarga = EntradaYSalida.leerCadena("Ingrese la fecha dd/mm/aaa: ");
+
+        tienda.setLaptop("Laptop", 1, marca, modelo, tamanioPantalla,
+                            precioUnitario,fechaCarga);
 
        }
-       else if(tipo.equals("2"))
+       if(tipo.equals("2"))
        {
-           // en precioUnitario va el precio despues de hacer el descuento del 15%...          
-          tienda.setDesktop("Desktop", 1, precioUnitario);
+       fechaCarga = EntradaYSalida.leerCadena("Ingrese la fecha dd/mm/aaaa: ");
+          tienda.setDesktop("Desktop", 1, precioUnitario,fechaCarga);
        }
+       }
+       else
+      {
+        EntradaYSalida.mostrarMensaje("\n¡¡Noy hay stock!!\n");
+      } 
 
-        opcion=EntradaYSalida.leerCadena("\nDesea continuar[s/n]?: ");
+       opcion=EntradaYSalida.leerCadena("\nDesea continuar[s/n]?: ");
 
-        } while( opcion.equals("s") || opcion.equals("S"));
+      } while( opcion.equals("s") || opcion.equals("S"));
+    
     }
+    
+    
 
     private void menuVentaProductos() 
     {
         String opcion;
         int indiceProducto;
-        
+         if (!tienda.getListaProductos().isEmpty())
+         {
         do
-        {
+         {
            EntradaYSalida.mostrarMensaje("\n----Lista de productos----");
            tienda.mostrarStockGeneral();
-        
-           indiceProducto =  EntradaYSalida.leerDatoEntero("\n\nDigite opción: ");
+           indiceProducto =  EntradaYSalida.leerEntero("\n\nIngrese una opción: ");
+         while(tienda.getListaProductos().size()!=indiceProducto)
+         {
+           indiceProducto =  EntradaYSalida.leerEntero("\nOpcion no valida"
+                                                   + "\nIngrese nuevamente: ");
+         }
+       
            tienda.descontarProducto(indiceProducto - 1);
            EntradaYSalida.mostrarMensaje("¡¡Compra Exitosa!!");
            opcion=EntradaYSalida.leerCadena("\n\nDesea continuar[s/n]?: ");
     
         } while( opcion.equals("s") || opcion.equals("S"));
+        }
+        else
+        {        
+            EntradaYSalida.mostrarMensaje("\n¡¡No hay stock!!\n");
+            EntradaYSalida.leerCadena("\nPresione cualquier tecla para salir ");
+         }
     }
-    
-    
 
-    
 }

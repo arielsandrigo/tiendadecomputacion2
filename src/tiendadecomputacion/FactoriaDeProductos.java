@@ -28,7 +28,7 @@ public class FactoriaDeProductos
      * @return p of type Producto
      * @throws ReflectiveOperationException
      */
-    public Producto crearProducto(final String productoID, int cantidadStock,double precioUnitario) throws ReflectiveOperationException
+    public Producto crearProducto(final String productoID, int cantidadStock,double precioUnitario,String fechaCarga) throws ReflectiveOperationException
     {
 	    Producto p = null;
 	
@@ -52,6 +52,7 @@ public class FactoriaDeProductos
             p.setCantidadStock(cantidadStock);
             p.setDescripcion(productoID);
             p.setPrecioUnitario(precioUnitario);
+            p.setFechaCarga(fechaCarga);
             
         }
           

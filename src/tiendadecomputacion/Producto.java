@@ -7,6 +7,7 @@ public class Producto
     private int cantidadStock;
     private String descripcion;
     private double precioUnitario;
+    private String fechaCarga;
 
     public Producto() 
     {
@@ -42,6 +43,16 @@ public class Producto
     {
         return precioUnitario;
     }
+
+    public String getFechaCarga() {
+        return fechaCarga;
+    }
+
+    public void setFechaCarga(String fechaCarga) {
+        this.fechaCarga = fechaCarga;
+    }
+    
+    
     
     /**
      * Metodo que se encarga de crear productos mediante factoria
@@ -51,7 +62,7 @@ public class Producto
      * @param tipo
      * @return p of type Productos
      */
-    public Producto altaPeriferico(String descripcion, int cantidadStock, double precioUnitario) 
+    public Producto altaPeriferico(String descripcion, int cantidadStock, double precioUnitario,String fechaCarga) 
     {
         //Periferico periferico;
         FactoriaDeProductos factoria = FactoriaDeProductos.getInstancia();
@@ -59,7 +70,7 @@ public class Producto
         
         try 
         {        
-             p = factoria.crearProducto(descripcion, cantidadStock, precioUnitario);
+             p = factoria.crearProducto(descripcion, cantidadStock, precioUnitario,fechaCarga);
              //periferico=(Periferico) p;
              //periferico.setTipo(descripcion);
         } catch (ReflectiveOperationException e) 
@@ -71,14 +82,14 @@ public class Producto
         return p;
     }
     
-    public Producto altaRam(String descripcion,int cantidadStock, double precioUnitario,String marca,String tecnologia,String FrecuenciaMaxima,int capacidad)
+    public Producto altaRam(String descripcion,int cantidadStock, double precioUnitario,String marca,String tecnologia,String FrecuenciaMaxima,int capacidad,String fechaCarga)
     {
         Ram ram ;
         FactoriaDeProductos factoria = FactoriaDeProductos.getInstancia();
         Producto p = null;
         try 
         {
-             p = factoria.crearProducto(descripcion, cantidadStock, precioUnitario);
+             p = factoria.crearProducto(descripcion, cantidadStock, precioUnitario,fechaCarga);
              ram=(Ram) p;
              ram.setMarca(marca);
              ram.setTecnologia(tecnologia);
@@ -94,14 +105,14 @@ public class Producto
         return p;
 }
     
-    public Producto altaProcesador(String descripcion,int cantidadStock, double precioUnitario,String fabricante,String modelo,String FrecuenciaMaxima)
+    public Producto altaProcesador(String descripcion,int cantidadStock, double precioUnitario,String fabricante,String modelo,String FrecuenciaMaxima,String fechaCarga)
     {
         Procesador procesador;
         FactoriaDeProductos factoria = FactoriaDeProductos.getInstancia();
         Producto p = null;
         try 
         {
-             p = factoria.crearProducto(descripcion, cantidadStock, precioUnitario);
+             p = factoria.crearProducto(descripcion, cantidadStock, precioUnitario,fechaCarga);
              procesador=(Procesador) p;
              procesador.setFabricante(fabricante);
              procesador.setModelo(modelo);
@@ -115,14 +126,14 @@ public class Producto
         return p;
 }
       
-    public Producto altaDisco(String descripcion,int cantidadStock, double precioUnitario,String marca,String tipo,int capacidad)
+    public Producto altaDisco(String descripcion,int cantidadStock, double precioUnitario,String marca,String tipo,int capacidad,String fechaCarga)
     {
         Disco disco;
         FactoriaDeProductos factoria = FactoriaDeProductos.getInstancia();
         Producto p = null;
         try 
         {
-             p = factoria.crearProducto(descripcion, cantidadStock, precioUnitario);
+             p = factoria.crearProducto(descripcion, cantidadStock, precioUnitario,fechaCarga);
              disco=(Disco) p;
              disco.setMarca(marca);
              disco.setTipo(tipo);
@@ -136,7 +147,7 @@ public class Producto
         return p;
 }
         
-    public Producto altaPlacaVideo(String descripcion,int cantidadStock, double precioUnitario,String fabricante,String modelo,int capacidadMemoria)
+    public Producto altaPlacaVideo(String descripcion,int cantidadStock, double precioUnitario,String fabricante,String modelo,int capacidadMemoria,String fechaCarga)
     {
         PlacaVideo placaVideo;
         FactoriaDeProductos factoria = FactoriaDeProductos.getInstancia();
@@ -144,7 +155,7 @@ public class Producto
         
         try 
         {
-             p = factoria.crearProducto(descripcion, cantidadStock, precioUnitario);
+             p = factoria.crearProducto(descripcion, cantidadStock, precioUnitario,fechaCarga);
              placaVideo=(PlacaVideo) p;
              placaVideo.setFabricante(fabricante);
              placaVideo.setModelo(modelo);
@@ -160,15 +171,14 @@ public class Producto
     }
 
     Producto altaLaptop(ArrayList<Producto> listaProductos, String descripcion,
-           int cantidadStock, String marca, String modelo,String tamanioPantalla, double precioUnitario)
+           int cantidadStock, String marca, String modelo,String tamanioPantalla, double precioUnitario,String fechaCarga)
     {
         Laptop laptop;
         FactoriaDeProductos factoria = FactoriaDeProductos.getInstancia();
         Producto p = null;
-        
        try          
        {            
-            p = factoria.crearProducto(descripcion, cantidadStock, precioUnitario);
+            p = factoria.crearProducto(descripcion, cantidadStock, precioUnitario,fechaCarga);
             p = setArmarLaptop(p, listaProductos);
             laptop = (Laptop) p;
             laptop.setMarca(marca);
@@ -185,14 +195,14 @@ public class Producto
         return p;
     }
 
-    Producto altaDesktop(ArrayList<Producto> listaProductos,String descripcion,int cantidadStock, double precioUnitario) 
+    Producto altaDesktop(ArrayList<Producto> listaProductos,String descripcion,int cantidadStock, double precioUnitario,String fechaCarga) 
     {
         FactoriaDeProductos factoria = FactoriaDeProductos.getInstancia();
         Producto p = null;
         
         try 
         {
-            p = factoria.crearProducto(descripcion, cantidadStock, precioUnitario);
+            p = factoria.crearProducto(descripcion, cantidadStock, precioUnitario,fechaCarga);
             p = setArmarDesktop(p,listaProductos);
              
         } catch (ReflectiveOperationException e) 
@@ -208,10 +218,10 @@ public class Producto
     {
         Laptop  laptop = (Laptop) p; 
         int cantidad;
-        
         for (int i = 0; i < listaProductos.size(); i++)
         {
             String componente = listaProductos.get(i).getDescripcion();
+           
             
             switch(componente)
             {
@@ -244,10 +254,10 @@ public class Producto
                    laptop.setPlacaVideo(placaVideo);
                    cantidad = 0;
                     break; 
-
-            }    
-        }
-        
+            } 
+            
+          }
+  
         return p;
         
     }
