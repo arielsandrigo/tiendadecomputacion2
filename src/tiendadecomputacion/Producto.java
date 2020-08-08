@@ -52,27 +52,24 @@ public class Producto
         this.fechaCarga = fechaCarga;
     }
     
-    
-    
+       
     /**
      * Metodo que se encarga de crear productos mediante factoria
      * @param descripcion
      * @param cantidadStock
      * @param precioUnitario
-     * @param tipo
+     * @param fechaCarga
      * @return p of type Productos
      */
     public Producto altaPeriferico(String descripcion, int cantidadStock, double precioUnitario,String fechaCarga) 
     {
-        //Periferico periferico;
         FactoriaDeProductos factoria = FactoriaDeProductos.getInstancia();
         Producto p = null;
         
         try 
         {        
              p = factoria.crearProducto(descripcion, cantidadStock, precioUnitario,fechaCarga);
-             //periferico=(Periferico) p;
-             //periferico.setTipo(descripcion);
+             
         } catch (ReflectiveOperationException e) 
         {
             EntradaYSalida.mostrarMensaje(" No se pudo crear el producto");
@@ -170,7 +167,7 @@ public class Producto
         return p;
     }
 
-    Producto altaLaptop(ArrayList<Producto> listaProductos, String descripcion,
+    public Producto altaLaptop(ArrayList<Producto> listaProductos, String descripcion,
            int cantidadStock, String marca, String modelo,String tamanioPantalla, double precioUnitario,String fechaCarga)
     {
         Laptop laptop;
@@ -195,7 +192,7 @@ public class Producto
         return p;
     }
 
-    Producto altaDesktop(ArrayList<Producto> listaProductos,String descripcion,int cantidadStock, double precioUnitario,String fechaCarga) 
+    public Producto altaDesktop(ArrayList<Producto> listaProductos,String descripcion,int cantidadStock, double precioUnitario,String fechaCarga) 
     {
         FactoriaDeProductos factoria = FactoriaDeProductos.getInstancia();
         Producto p = null;

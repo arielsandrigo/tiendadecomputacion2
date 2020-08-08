@@ -3,7 +3,7 @@ package tiendadecomputacion;
 public class Duenio 
 {
     private Tienda tienda = null;    
-    private Producto producto= new Producto();
+    
     public Duenio()
     {
            
@@ -370,80 +370,136 @@ public class Duenio
         String fechaCarga;
       
       do
-      {
-        EntradaYSalida.mostrarMensaje("\n----Computadora----\n");
-         
-        EntradaYSalida.mostrarMensaje("\n---Clasificados---\n"
+      {  
+            EntradaYSalida.mostrarMensaje("\n---Clasificados---\n"
                                     + "[1] Laptop\n"
                                     + "[2] Desktop\n");
-        tipo=EntradaYSalida.leerCadena("Ingresar el tipo: ");  
-        if(producto.getCantidadStock()>0){
-            
-        if(tipo.equals("1"))
-        {
-        EntradaYSalida.mostrarMensaje("descripcion: Laptop \n");  
-        marca = EntradaYSalida.leerCadena("Ingresar a marca: ");
-        modelo = EntradaYSalida.leerCadena("Ingresar a modelo: ");
-        tamanioPantalla = EntradaYSalida.leerCadena("Ingresar el tamaño de la pantalla: ");
-        precioUnitario=EntradaYSalida.leerDouble("Ingrese el precio Unitario: ");
-        while(precioUnitario<=0)
-        {
-          precioUnitario = EntradaYSalida.leerDouble("\nEl precio ingresado no es válido\n"
-                                                   + "\nIngrese nuevamente: ");
-        }
-        fechaCarga = EntradaYSalida.leerCadena("Ingrese la fecha dd/mm/aaa: ");
+            tipo = EntradaYSalida.leerCadena("Ingresar el tipo: ");  
 
-        tienda.setLaptop("Laptop", 1, marca, modelo, tamanioPantalla,
-                            precioUnitario,fechaCarga);
+              if(tipo.equals("1"))
+              {
+                 EntradaYSalida.mostrarMensaje("descripcion: Laptop \n");  
+                 marca = EntradaYSalida.leerCadena("Ingresar a marca: ");
+                 modelo = EntradaYSalida.leerCadena("Ingresar a modelo: ");
+                 tamanioPantalla = EntradaYSalida.leerCadena("Ingresar el tamaño de la pantalla: ");
+                 precioUnitario=EntradaYSalida.leerDouble("Ingrese el precio Unitario: ");
 
-       }
-       if(tipo.equals("2"))
-       {
-       fechaCarga = EntradaYSalida.leerCadena("Ingrese la fecha dd/mm/aaaa: ");
-          tienda.setDesktop("Desktop", 1, precioUnitario,fechaCarga);
-       }
-       }
-       else
-      {
-        EntradaYSalida.mostrarMensaje("\n¡¡Noy hay stock!!\n");
-      } 
+                while(precioUnitario <= 0)
+                {
+                  precioUnitario = EntradaYSalida.leerDouble("\nEl precio ingresado no es válido\n"
+                                                       + "\nIngrese nuevamente: ");
+                }
 
-       opcion=EntradaYSalida.leerCadena("\nDesea continuar[s/n]?: ");
+                fechaCarga = EntradaYSalida.leerCadena("Ingrese la fecha dd/mm/aaa: ");
 
-      } while( opcion.equals("s") || opcion.equals("S"));
+                tienda.setLaptop("Laptop", 1, marca, modelo, tamanioPantalla,
+                                precioUnitario,fechaCarga);
+
+              }
+
+              if(tipo.equals("2"))
+              {
+                fechaCarga = EntradaYSalida.leerCadena("Ingrese la fecha dd/mm/aaaa: ");
+                   tienda.setDesktop("Desktop", 1, precioUnitario,fechaCarga);
+              } 
+
+           opcion=EntradaYSalida.leerCadena("\nDesea continuar[s/n]?: ");
+
+    } while( opcion.equals("s") || opcion.equals("S"));
     
-    }
+  }
     
-    
-
     private void menuVentaProductos() 
     {
-        String opcion;
-        int indiceProducto;
-         if (!tienda.getListaProductos().isEmpty())
+        int opcion;
+        
+       do
+       { 
+         opcion = EntradaYSalida.leerEntero("\n\n---Menú tipo de venta-----\n"
+                    +"[1] Vender producto\n"
+                    +"[2] Vender elemento de una desktop\n"
+                    +"[3] Venta elemento de una Laptop\n"
+                    +"[4] Salir\n"
+                    +"Digite una opcion: ");
+        
+         switch (opcion)
          {
-        do
-         {
-           EntradaYSalida.mostrarMensaje("\n----Lista de productos----");
-           tienda.mostrarStockGeneral();
-           indiceProducto =  EntradaYSalida.leerEntero("\n\nIngrese una opción: ");
-         while(tienda.getListaProductos().size()!=indiceProducto)
-         {
-           indiceProducto =  EntradaYSalida.leerEntero("\nOpcion no valida"
-                                                   + "\nIngrese nuevamente: ");
+            case 1:
+    	          venderProducto();
+             break;
+            case 2:
+                  venderElementoDekstop();
+             break;
+            case 3:
+                  venderElementoLaptop();
+             break;
+            case 4:
+                  EntradaYSalida.mostrarMensaje("salir");
+             break;
          }
        
-           tienda.descontarProducto(indiceProducto - 1);
-           EntradaYSalida.mostrarMensaje("¡¡Compra Exitosa!!");
-           opcion=EntradaYSalida.leerCadena("\n\nDesea continuar[s/n]?: ");
+       } while (!(opcion == 4));
+
+           
+    }    
+        
+    private void venderProducto()
+    {    
+        String opcion;
+        int indiceProducto;
+      
+        if (!tienda.getListaProductos().isEmpty())
+        {
+          do
+          {
+             EntradaYSalida.mostrarMensaje("\n----Lista de productos----");
+             tienda.mostrarStockGeneral();
+             indiceProducto =  EntradaYSalida.leerEntero("\n\nIngrese una opción: ");
+         
+             while(tienda.getListaProductos().size()!= indiceProducto)
+             {
+               indiceProducto =  EntradaYSalida.leerEntero("\nOpcion no valida"
+                                                    + "\nIngrese nuevamente: ");
+             }
+       
+             tienda.venderProducto(indiceProducto - 1);
+             EntradaYSalida.mostrarMensaje("¡¡Compra Exitosa!!");
+             opcion=EntradaYSalida.leerCadena("\n\nDesea continuar[s/n]?: ");
     
-        } while( opcion.equals("s") || opcion.equals("S"));
+           } while( opcion.equals("s") || opcion.equals("S"));
         }
         else
         {        
-            EntradaYSalida.mostrarMensaje("\n¡¡No hay stock!!\n");
-            EntradaYSalida.leerCadena("\nPresione cualquier tecla para salir ");
-         }
+          EntradaYSalida.mostrarMensaje("\n¡¡No hay stock!!\n");
+          EntradaYSalida.leerCadena("\nPresione cualquier tecla para salir ");
+        }
     }
+
+    private void venderElementoDekstop() 
+    {
+        int indiceDesktop, indiceElemento;
+        
+        EntradaYSalida.mostrarMensaje("\n----Lista de elementos de la desktop----");
+        tienda.mostrarStockDesktop();
+        indiceDesktop = EntradaYSalida.leerEntero("\n\nDigite opción de la desktop: ");
+        indiceElemento = EntradaYSalida.leerEntero("Digite opción del elemento: ");
+        tienda.venderElementoDesktop(indiceDesktop - 1 , indiceElemento);
+        EntradaYSalida.mostrarMensaje("¡¡Compra Exitosa!!");
+
+    }
+    
+    private void venderElementoLaptop() 
+    {
+        int indiceLaptop, indiceElemento;
+        
+        EntradaYSalida.mostrarMensaje("\n----Lista de elementos de la laptop----");
+        tienda.mostrarStockLaptop();
+        indiceLaptop = EntradaYSalida.leerEntero("\n\nDigite opción de la latop: ");
+        indiceElemento = EntradaYSalida.leerEntero("Digite opción del elemento: ");
+        tienda.venderElementoLaptop(indiceLaptop - 1, indiceElemento);
+        EntradaYSalida.mostrarMensaje("¡¡Compra Exitosa!!");
+    }
+     
+     
 
 }
