@@ -1,10 +1,7 @@
 
 package tiendadecomputacion;
 
-/**
- *
- * @author Liz
- */
+
 public class Desktop extends Computadora
 {
     private Mouse mouse;

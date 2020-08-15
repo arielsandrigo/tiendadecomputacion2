@@ -263,7 +263,6 @@ public class Tienda
           
     }
 
-    //TODO: por hacer. Alberto
     public void venderElementoDesktop(int indiceDesktop, int opcionElemento) 
     {
         Desktop desktop = (Desktop) listaProductos.get(indiceDesktop);
@@ -272,32 +271,95 @@ public class Tienda
         {
             case 1:
                  //placa
+                desktop.getRam().setCantidadStock(desktop.getRam().getCantidadStock() + 1);
+                desktop.getTeclado().setCantidadStock(desktop.getTeclado().getCantidadStock() + 1);
+                desktop.getMonitor().setCantidadStock(desktop.getMonitor().getCantidadStock() + 1);
+                desktop.getWebcam().setCantidadStock(desktop.getWebcam().getCantidadStock() + 1);
+                desktop.getMouse().setCantidadStock(desktop.getMouse().getCantidadStock() + 1);
+                desktop.getProcesador().setCantidadStock(desktop.getProcesador().getCantidadStock() + 1);
+                desktop.getDisco().setCantidadStock(desktop.getDisco().getCantidadStock() + 1);
+                listaProductos.remove(indiceDesktop);
                 break;
             case 2:
                 //ram
+                desktop.getPlacaVideo().setCantidadStock(desktop.getPlacaVideo().getCantidadStock() + 1);
+                desktop.getTeclado().setCantidadStock(desktop.getTeclado().getCantidadStock() + 1);
+                desktop.getMonitor().setCantidadStock(desktop.getMonitor().getCantidadStock() + 1);
+                desktop.getWebcam().setCantidadStock(desktop.getWebcam().getCantidadStock() + 1);
+                desktop.getMouse().setCantidadStock(desktop.getMouse().getCantidadStock() + 1);
+                desktop.getProcesador().setCantidadStock(desktop.getProcesador().getCantidadStock() + 1);
+                desktop.getDisco().setCantidadStock(desktop.getDisco().getCantidadStock() + 1);
+                listaProductos.remove(indiceDesktop);
                 break;
             case 3:
                 //procesador
+                desktop.getRam().setCantidadStock(desktop.getRam().getCantidadStock() + 1);
+                desktop.getTeclado().setCantidadStock(desktop.getTeclado().getCantidadStock() + 1);
+                desktop.getMonitor().setCantidadStock(desktop.getMonitor().getCantidadStock() + 1);
+                desktop.getWebcam().setCantidadStock(desktop.getWebcam().getCantidadStock() + 1);
+                desktop.getMouse().setCantidadStock(desktop.getMouse().getCantidadStock() + 1);
+                desktop.getPlacaVideo().setCantidadStock(desktop.getPlacaVideo().getCantidadStock() + 1);
+                desktop.getDisco().setCantidadStock(desktop.getDisco().getCantidadStock() + 1);
+                listaProductos.remove(indiceDesktop);
                 break;
             case 4:
                 //disco
+                desktop.getRam().setCantidadStock(desktop.getRam().getCantidadStock() + 1);
+                desktop.getTeclado().setCantidadStock(desktop.getTeclado().getCantidadStock() + 1);
+                desktop.getMonitor().setCantidadStock(desktop.getMonitor().getCantidadStock() + 1);
+                desktop.getWebcam().setCantidadStock(desktop.getWebcam().getCantidadStock() + 1);
+                desktop.getMouse().setCantidadStock(desktop.getMouse().getCantidadStock() + 1);
+                desktop.getPlacaVideo().setCantidadStock(desktop.getPlacaVideo().getCantidadStock() + 1);
+                desktop.getProcesador().setCantidadStock(desktop.getProcesador().getCantidadStock() + 1);
+                listaProductos.remove(indiceDesktop);
                 break;
             case 5:
                 //teclado
+                desktop.getRam().setCantidadStock(desktop.getRam().getCantidadStock() + 1);
+                desktop.getDisco().setCantidadStock(desktop.getDisco().getCantidadStock() + 1);
+                desktop.getMonitor().setCantidadStock(desktop.getMonitor().getCantidadStock() + 1);
+                desktop.getWebcam().setCantidadStock(desktop.getWebcam().getCantidadStock() + 1);
+                desktop.getMouse().setCantidadStock(desktop.getMouse().getCantidadStock() + 1);
+                desktop.getPlacaVideo().setCantidadStock(desktop.getPlacaVideo().getCantidadStock() + 1);
+                desktop.getDisco().setCantidadStock(desktop.getDisco().getCantidadStock() + 1);
+                listaProductos.remove(indiceDesktop);
                 break;
             case 6:
                 //mouse
+                desktop.getRam().setCantidadStock(desktop.getRam().getCantidadStock() + 1);
+                desktop.getDisco().setCantidadStock(desktop.getDisco().getCantidadStock() + 1);
+                desktop.getMonitor().setCantidadStock(desktop.getMonitor().getCantidadStock() + 1);
+                desktop.getWebcam().setCantidadStock(desktop.getWebcam().getCantidadStock() + 1);
+                desktop.getTeclado().setCantidadStock(desktop.getTeclado().getCantidadStock() + 1);
+                desktop.getPlacaVideo().setCantidadStock(desktop.getPlacaVideo().getCantidadStock() + 1);
+                desktop.getDisco().setCantidadStock(desktop.getDisco().getCantidadStock() + 1);
+                listaProductos.remove(indiceDesktop);
                 break;    
             case 7:
                 //monitor
+                desktop.getRam().setCantidadStock(desktop.getRam().getCantidadStock() + 1);
+                desktop.getDisco().setCantidadStock(desktop.getDisco().getCantidadStock() + 1);
+                desktop.getMouse().setCantidadStock(desktop.getMouse().getCantidadStock() + 1);
+                desktop.getWebcam().setCantidadStock(desktop.getWebcam().getCantidadStock() + 1);
+                desktop.getTeclado().setCantidadStock(desktop.getTeclado().getCantidadStock() + 1);
+                desktop.getPlacaVideo().setCantidadStock(desktop.getPlacaVideo().getCantidadStock() + 1);
+                desktop.getDisco().setCantidadStock(desktop.getDisco().getCantidadStock() + 1);
+                listaProductos.remove(indiceDesktop);
                 break;
             case 8:
                 //webcam
+                desktop.getRam().setCantidadStock(desktop.getRam().getCantidadStock() + 1);
+                desktop.getDisco().setCantidadStock(desktop.getDisco().getCantidadStock() + 1);
+                desktop.getMouse().setCantidadStock(desktop.getMouse().getCantidadStock() + 1);
+                desktop.getMonitor().setCantidadStock(desktop.getMonitor().getCantidadStock() + 1);
+                desktop.getTeclado().setCantidadStock(desktop.getTeclado().getCantidadStock() + 1);
+                desktop.getPlacaVideo().setCantidadStock(desktop.getPlacaVideo().getCantidadStock() + 1);
+                desktop.getDisco().setCantidadStock(desktop.getDisco().getCantidadStock() + 1);
+                listaProductos.remove(indiceDesktop);
                 break;
             
         }
         
-    
     }
     
     public void venderElementoLaptop(int indiceLaptop, int opcionElemento) 
