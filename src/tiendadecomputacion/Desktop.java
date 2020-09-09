@@ -1,8 +1,10 @@
 
 package tiendadecomputacion;
 
+import java.io.Serializable;
 
-public class Desktop extends Computadora
+public class Desktop extends Computadora implements Serializable
+
 {
     private Mouse mouse;
     private Webcam webcam;

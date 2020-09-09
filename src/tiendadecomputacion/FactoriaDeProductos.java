@@ -1,6 +1,8 @@
 package tiendadecomputacion;
 
-public class FactoriaDeProductos 
+import java.io.Serializable;
+
+public class FactoriaDeProductos implements Serializable
 {
     private static FactoriaDeProductos factoria = null;
 
@@ -28,7 +30,7 @@ public class FactoriaDeProductos
      * @return p of type Producto
      * @throws ReflectiveOperationException
      */
-    public Producto crearProducto(final String productoID, int cantidadStock,double precioUnitario,String fechaCarga) throws ReflectiveOperationException
+    public Producto crearProducto(final String productoID, int cantidadStock,double precioUnitario,String fecha) throws ReflectiveOperationException
     {
 	    Producto p = null;
 	
@@ -52,7 +54,7 @@ public class FactoriaDeProductos
             p.setCantidadStock(cantidadStock);
             p.setDescripcion(productoID);
             p.setPrecioUnitario(precioUnitario);
-            p.setFechaCarga(fechaCarga);
+            p.setFecha(fecha);
             
         }
           

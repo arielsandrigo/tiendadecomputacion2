@@ -1,15 +1,17 @@
 package tiendadecomputacion;
-
 /**
- *
- * @author ariel
+ * @author Alberto Arcentales
+ * @author Liz Neira
+ * @author Ariel Sandrigo
  */
-public class Main 
-{
-    public static void main(String[] args) throws Exception
+public class Main {
+    
+    public static void main(String[] args)
     {
-        Duenio duenio =  new Duenio();
-        duenio.menuPrincipal();
+        
+        LeerYGrabarArchivo  leerYGrabarArchivo = new LeerYGrabarArchivo  ("Tienda.txt");
+        leerYGrabarArchivo.inicializar();
+ 
     }
-     
+    
 }

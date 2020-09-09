@@ -1,7 +1,9 @@
 package tiendadecomputacion;
 
+import java.io.Serializable;
 
-public class Procesador extends Componente
+
+public class Procesador extends Componente implements Serializable
 {
     private String fabricante, modelo, frecuenciaMaxima;
    

@@ -1,5 +1,9 @@
 package tiendadecomputacion;
 
+import static java.lang.Character.toUpperCase;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Scanner;
 
 public class EntradaYSalida 
@@ -33,5 +37,51 @@ public class EntradaYSalida
         System.out.print(mensaje);
         return (float) entrada.nextDouble();
     }
+ 
+   public static String leerFecha()
+    {
+         String fecha;
+         Date fechaValida = null;
+       
+        do
+        {
+          fecha = EntradaYSalida.leerCadena("Ingrese la fecha (dd/mm/yyyy): ");
+ 
+         //   Locale espanolLocale = new Locale("es", "ES"); 
 
+            try
+            {
+               fechaValida = validarFecha(fecha);
+
+              //  System.out.println("Fecha valida");
+            }
+            catch(ParseException e)
+            {
+                e.getMessage();
+            }
+            
+       }while( fechaValida == null );
+
+         return fecha;
+      }
+   
+   public static Date validarFecha(String fechaValidar) throws ParseException
+   {
+        
+        Date fecha = null;
+        
+        try
+        {
+            SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
+            formatoFecha.setLenient(false);
+
+            fecha = formatoFecha.parse( fechaValidar );
+        }
+        catch(ParseException e)
+        {
+            throw e;
+        }
+        
+        return fecha;
+    }
 }

@@ -1,7 +1,9 @@
 
 package tiendadecomputacion;
 
-public class Webcam extends Periferico
+import java.io.Serializable;
+
+public class Webcam extends Periferico implements Serializable
 {
     
 }

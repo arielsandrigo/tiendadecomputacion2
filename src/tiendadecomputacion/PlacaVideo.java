@@ -1,6 +1,8 @@
 package tiendadecomputacion;
 
-public class PlacaVideo extends Componente
+import java.io.Serializable;
+
+public class PlacaVideo extends Componente implements Serializable
 {
     private String fabricante, modelo;
     int capacidadMemoria;

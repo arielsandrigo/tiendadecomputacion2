@@ -1,21 +1,26 @@
 package tiendadecomputacion;
 
-public class Duenio 
+import java.io.Serializable;
+
+
+public class Duenio implements Serializable
 {
     private Tienda tienda = null;    
-    
-    public Duenio()
-    {
-           
+    private LeerYGrabarArchivo leerYGrabarASS = new LeerYGrabarArchivo ("Tienda.txt");
+
+    public Duenio(Tienda tienda)
+    {   
+        this.tienda=tienda; 
     }
 
     /**
      * Metodo que se encarga de las diferentes opciones que tiene
      * el dueño
      */
+    
+    
     public void menuPrincipal()
     {
-       tienda = new Tienda();
        int opcion;
        String mensaje;
        
@@ -40,13 +45,10 @@ public class Duenio
             case 3:
                   menuVentaProductos();
              break;
-            case 4:
-                  EntradaYSalida.mostrarMensaje("salir");
-             break;
          }
        
        } while (!(opcion == 4));
-
+ 
     }
 
     private void menuAltaProductos()
@@ -83,18 +85,16 @@ public class Duenio
 
     private void darDeAltaPeriferico()
     {   
-         String tipo;
          String opcion;
          String descripcion;
          String mensaje;
          int  cantidadStock;
          double precioUnitario=0.0;
-         String fechaCarga;
-
+         String fecha;
       do
       {
-          EntradaYSalida.mostrarMensaje("\n----Alta Perifericos----\n");
-          EntradaYSalida.mostrarMensaje("descripcion: Periferico\n");
+          EntradaYSalida.mostrarMensaje("\n----Alta Perifericos----\n"
+                                      + "descripcion: Periferico\n");
           cantidadStock = EntradaYSalida.leerEntero("Ingrese la cantidad stock: ");
           while(cantidadStock<=0)
           {
@@ -107,8 +107,9 @@ public class Duenio
           precioUnitario = EntradaYSalida.leerDouble("\nEl precio ingresado no es válido\n"
                                                    + "\nIngrese nuevamente: ");
           }
-          
-          fechaCarga=EntradaYSalida.leerCadena("Ingrese la fecha dd/mm/aaaa: ");
+          fecha=EntradaYSalida.leerFecha();
+ 
+
                   
                           mensaje = ("\n---Tipo---\n"
                                     + "[1] Teclado\n"
@@ -134,7 +135,8 @@ public class Duenio
                 break;
           }
 
-          tienda.setPeriferico(descripcion, cantidadStock, precioUnitario,fechaCarga);    
+          tienda.setPeriferico(descripcion, cantidadStock, precioUnitario,fecha);    
+          leerYGrabarASS.guardarArchivo(tienda);
           opcion = EntradaYSalida.leerCadena("\nDesea continuar[s/n]?: ");
         
         } while( opcion.equals("s") || opcion.equals("S"));
@@ -188,7 +190,7 @@ public class Duenio
         int cantidadStock;
         double precioUnitario;
         String opcion;
-        String fechaCarga;
+        String fecha;
 
       do
       {
@@ -206,7 +208,7 @@ public class Duenio
           precioUnitario = EntradaYSalida.leerDouble("\nEl precio ingresado no es válido\n"
                                                    + "\nIngrese nuevamente: ");
         }
-        fechaCarga=EntradaYSalida.leerCadena("Ingrese la fecha dd/mm/aaaa: "); 
+        fecha=EntradaYSalida.leerFecha();
         marca=EntradaYSalida.leerCadena("Ingresar la marca: ");          
         tecnologia=EntradaYSalida.leerCadena("Ingresar la tecnologia:  ");
         frecuenciaMaxima=EntradaYSalida.leerCadena("Ingresar la frecuencia maxima: ");
@@ -217,7 +219,8 @@ public class Duenio
                                                    + "\nIngrese nuevamente: ");
         }
          
-        tienda.setRam(descripcion, cantidadStock, precioUnitario,marca,tecnologia,frecuenciaMaxima,capacidad,fechaCarga);       
+         tienda.setRam(descripcion, cantidadStock, precioUnitario,marca,tecnologia,frecuenciaMaxima,capacidad,fecha);  
+         leerYGrabarASS.guardarArchivo(tienda);
         opcion=EntradaYSalida.leerCadena("\nDesea continuar[s/n]?: ");
        
         } while( opcion.equals("s") || opcion.equals("S"));
@@ -233,7 +236,7 @@ public class Duenio
         int cantidadStock;
         double precioUnitario;
         String opcion;
-        String fechaCarga;
+        String fecha;
 
       do
       {
@@ -251,12 +254,13 @@ public class Duenio
           precioUnitario = EntradaYSalida.leerDouble("\nEl precio ingresado no es válido\n"
                                                    + "\nIngrese nuevamente: ");
         }
-        fechaCarga = EntradaYSalida.leerCadena("Ingrese la fecha dd/mm/aaaa: ");
+        fecha = EntradaYSalida.leerFecha();
         fabricante=EntradaYSalida.leerCadena("Ingresar el fabricante: ");          
         modelo=EntradaYSalida.leerCadena("Ingresar el modelo: ");
         frecuenciaMaxima=EntradaYSalida.leerCadena("Ingresar la frecuencia maxima: ");
 	         
-        tienda.setProcesador(descripcion, cantidadStock, precioUnitario,fabricante,modelo,frecuenciaMaxima,fechaCarga);
+        tienda.setProcesador(descripcion, cantidadStock, precioUnitario,fabricante,modelo,frecuenciaMaxima,fecha);
+        leerYGrabarASS.guardarArchivo(tienda);
         opcion=EntradaYSalida.leerCadena("\nDesea continuar[s/n]?: ");
         
         } while( opcion.equals("s") || opcion.equals("S"));
@@ -271,8 +275,7 @@ public class Duenio
         int cantidadStock;
         double precioUnitario;
         String opcion;
-        String fechaCarga;
-    
+        String fecha;
       do
       {
         EntradaYSalida.mostrarMensaje("\n----Disco----\n");
@@ -289,7 +292,7 @@ public class Duenio
           precioUnitario = EntradaYSalida.leerDouble("\nEl precio ingresado no es válido\n"
                                                    + "\nIngrese nuevamente: ");
         }
-        fechaCarga = EntradaYSalida.leerCadena("Ingrese la fecha dd/mm/aaaa: ");
+        fecha=EntradaYSalida.leerFecha();
         marca=EntradaYSalida.leerCadena("Ingresar a marca: ");
         EntradaYSalida.mostrarMensaje("\n---Tipo---\n"
                                     + "[1] Magnetico\n"
@@ -309,7 +312,8 @@ public class Duenio
                                                    + "\nIngrese nuevamente: ");
         } 
         
-        tienda.setDisco(descripcion, cantidadStock, precioUnitario,marca,tipo,capacidad,fechaCarga);
+        tienda.setDisco(descripcion, cantidadStock, precioUnitario,marca,tipo,capacidad,fecha);
+        leerYGrabarASS.guardarArchivo(tienda);
         opcion=EntradaYSalida.leerCadena("\nDesea continuar[s/n]?: ");
 
         } while( opcion.equals("s") || opcion.equals("S"));
@@ -324,8 +328,7 @@ public class Duenio
         int cantidadStock;
         double precioUnitario;
         String opcion;
-        String fechaCarga;
-
+        String fecha;
       do
       {
         EntradaYSalida.mostrarMensaje("\n----Placa De Video----\n");
@@ -342,18 +345,19 @@ public class Duenio
           precioUnitario = EntradaYSalida.leerDouble("\nEl precio ingresado no es válido\n"
                                                    + "\nIngrese nuevamente: ");
         }
-        fechaCarga = EntradaYSalida.leerCadena("Ingrese la fecha dd/mm/aaaa: ");
-        fabricante=EntradaYSalida.leerCadena("Ingresar el fabricante: ");          
-        modelo=EntradaYSalida.leerCadena("Ingresar el modelo: ");
-        capacidadMemoria=EntradaYSalida.leerEntero("Ingresar la capacidad de memoria: ");
+        fecha=EntradaYSalida.leerFecha();
+        fabricante = EntradaYSalida.leerCadena("Ingresar el fabricante: ");          
+        modelo = EntradaYSalida.leerCadena("Ingresar el modelo: ");
+        capacidadMemoria = EntradaYSalida.leerEntero("Ingresar la capacidad de memoria: ");
         while(capacidadMemoria<=0)
         {
           capacidadMemoria = EntradaYSalida.leerEntero("\nLa capacidad ingresada no es válida\n"
                                                    + "\nIngrese nuevamente: ");
         } 
 	          
-        tienda.setPlacaVideo(descripcion, cantidadStock, precioUnitario,fabricante,modelo,capacidadMemoria,fechaCarga);
-        opcion=EntradaYSalida.leerCadena("\nDesea continuar[s/n]?: ");
+        tienda.setPlacaVideo(descripcion, cantidadStock, precioUnitario,fabricante,modelo,capacidadMemoria,fecha);
+        leerYGrabarASS.guardarArchivo(tienda);
+        opcion = EntradaYSalida.leerCadena("\nDesea continuar[s/n]?: ");
 
         } while( opcion.equals("s") || opcion.equals("S"));
             
@@ -363,143 +367,94 @@ public class Duenio
     {
         String marca;
         String tipo;
-        double precioUnitario=0;
+        double precioUnitario=0.0;
         String modelo;
         String tamanioPantalla;
         String opcion;
-        String fechaCarga;
-      
+        String fecha;
+        
       do
-      {  
-            EntradaYSalida.mostrarMensaje("\n---Clasificados---\n"
+      {
+         
+        EntradaYSalida.mostrarMensaje("\n---Clasificados---\n"
                                     + "[1] Laptop\n"
                                     + "[2] Desktop\n");
-            tipo = EntradaYSalida.leerCadena("Ingresar el tipo: ");  
-
-              if(tipo.equals("1"))
+        tipo = EntradaYSalida.leerCadena("Ingresar el tipo: ");  
+          if(tienda.stockComponentes())
+          {
+              if (tipo.equals("1"))
               {
-                 EntradaYSalida.mostrarMensaje("descripcion: Laptop \n");  
-                 marca = EntradaYSalida.leerCadena("Ingresar a marca: ");
-                 modelo = EntradaYSalida.leerCadena("Ingresar a modelo: ");
-                 tamanioPantalla = EntradaYSalida.leerCadena("Ingresar el tamaño de la pantalla: ");
-                 precioUnitario=EntradaYSalida.leerDouble("Ingrese el precio Unitario: ");
-
-                while(precioUnitario <= 0)
-                {
-                  precioUnitario = EntradaYSalida.leerDouble("\nEl precio ingresado no es válido\n"
-                                                       + "\nIngrese nuevamente: ");
-                }
-
-                fechaCarga = EntradaYSalida.leerCadena("Ingrese la fecha dd/mm/aaa: ");
-
-                tienda.setLaptop("Laptop", 1, marca, modelo, tamanioPantalla,
-                                precioUnitario,fechaCarga);
+                  EntradaYSalida.mostrarMensaje("descripcion: Laptop \n");
+                  marca = EntradaYSalida.leerCadena("Ingresar a marca: ");
+                  modelo = EntradaYSalida.leerCadena("Ingresar a modelo: ");
+                  tamanioPantalla = EntradaYSalida.leerCadena("Ingresar el tamaño de la pantalla: ");
+                  precioUnitario = EntradaYSalida.leerDouble("Ingrese el precio Unitario: ");
+                  while (precioUnitario <= 0)
+                  {
+                      precioUnitario = EntradaYSalida.leerDouble("\nEl precio ingresado no es válido\n"
+                              + "\nIngrese nuevamente: ");
+                  }
+                  fecha=EntradaYSalida.leerFecha();
+                  tienda.setLaptop("Laptop", 1, marca, modelo, tamanioPantalla,precioUnitario,fecha);
+                  leerYGrabarASS.guardarArchivo(tienda);
 
               }
-
-              if(tipo.equals("2"))
+          }
+              else{
+                   EntradaYSalida.mostrarMensaje("\n¡¡No hay stock!!\n");
+                 EntradaYSalida.leerCadena("\nPresione cualquier tecla para salir ");
+                  }
+            if(tienda.stockComponentes() && tienda.stockPerifericos())
+            {
+              if (tipo.equals("2"))
               {
-                fechaCarga = EntradaYSalida.leerCadena("Ingrese la fecha dd/mm/aaaa: ");
-                   tienda.setDesktop("Desktop", 1, precioUnitario,fechaCarga);
-              } 
-
+                 fecha=EntradaYSalida.leerFecha();
+                 tienda.setDesktop("Desktop", 1, precioUnitario,fecha);
+                 leerYGrabarASS.guardarArchivo(tienda);
+              }
+            }
+            else
+            {
+            EntradaYSalida.mostrarMensaje("\n¡¡No hay stock!!\n");
+            EntradaYSalida.leerCadena("\nPresione cualquier tecla para salir ");
+            }
            opcion=EntradaYSalida.leerCadena("\nDesea continuar[s/n]?: ");
 
-    } while( opcion.equals("s") || opcion.equals("S"));
+      } while( opcion.equals("s") || opcion.equals("S"));
     
   }
-    
+
     private void menuVentaProductos() 
     {
-        int opcion;
-        
-       do
-       { 
-         opcion = EntradaYSalida.leerEntero("\n\n---Menú tipo de venta-----\n"
-                    +"[1] Vender producto\n"
-                    +"[2] Vender elemento de una desktop\n"
-                    +"[3] Venta elemento de una Laptop\n"
-                    +"[4] Salir\n"
-                    +"Digite una opcion: ");
-        
-         switch (opcion)
-         {
-            case 1:
-    	          venderProducto();
-             break;
-            case 2:
-                  venderElementoDekstop();
-             break;
-            case 3:
-                  venderElementoLaptop();
-             break;
-            case 4:
-                  EntradaYSalida.mostrarMensaje("salir");
-             break;
-         }
-       
-       } while (!(opcion == 4));
-
-           
-    }    
-        
-    private void venderProducto()
-    {    
         String opcion;
-        int indiceProducto;
-      
+        int indiceProducto=0;
         if (!tienda.getListaProductos().isEmpty())
         {
-          do
-          {
-             EntradaYSalida.mostrarMensaje("\n----Lista de productos----");
-             tienda.mostrarStockGeneral();
-             indiceProducto =  EntradaYSalida.leerEntero("\n\nIngrese una opción: ");
-         
-             while(tienda.getListaProductos().size()!= indiceProducto)
-             {
-               indiceProducto =  EntradaYSalida.leerEntero("\nOpcion no valida"
-                                                    + "\nIngrese nuevamente: ");
-             }
-       
-             tienda.venderProducto(indiceProducto - 1);
-             EntradaYSalida.mostrarMensaje("¡¡Compra Exitosa!!");
-             opcion=EntradaYSalida.leerCadena("\n\nDesea continuar[s/n]?: ");
-    
-           } while( opcion.equals("s") || opcion.equals("S"));
-        }
+            do
+               {
+
+                EntradaYSalida.mostrarMensaje("\n----Lista de productos----");
+                tienda.mostrarStockGeneral();
+                indiceProducto = EntradaYSalida.leerEntero("\n\nIngrese una opción: ");
+                
+                while (indiceProducto < 0 || indiceProducto > tienda.getListaProductos().size())
+                {
+                  indiceProducto = EntradaYSalida.leerEntero("\nOpcion no valida"
+                  + "\nIngrese nuevamente: ");
+                }
+                
+                tienda.venderProducto(indiceProducto - 1);
+                EntradaYSalida.mostrarMensaje("\n\n¡¡Compra Exitosa!!\n\n");
+                EntradaYSalida.mostrarMensaje("Precio Final a pagar: $"+tienda.obtenerPrecioFinal(indiceProducto));
+                opcion = EntradaYSalida.leerCadena("\n\nDesea continuar[s/n]?: ");
+
+            } while (opcion.equals("s") || opcion.equals("S"));
+        } 
         else
-        {        
-          EntradaYSalida.mostrarMensaje("\n¡¡No hay stock!!\n");
-          EntradaYSalida.leerCadena("\nPresione cualquier tecla para salir ");
-        }
-    }
-
-    private void venderElementoDekstop() 
-    {
-        int indiceDesktop, indiceElemento;
-        
-        EntradaYSalida.mostrarMensaje("\n----Lista de elementos de la desktop----");
-        tienda.mostrarStockDesktop();
-        indiceDesktop = EntradaYSalida.leerEntero("\n\nDigite opción de la desktop: ");
-        indiceElemento = EntradaYSalida.leerEntero("Digite opción del elemento: ");
-        tienda.venderElementoDesktop(indiceDesktop - 1 , indiceElemento);
-        EntradaYSalida.mostrarMensaje("¡¡Compra Exitosa!!");
-
+         {
+            EntradaYSalida.mostrarMensaje("\n¡¡No hay stock!!\n");
+            EntradaYSalida.leerCadena("\nPresione cualquier tecla para salir ");
+         }
     }
     
-    private void venderElementoLaptop() 
-    {
-        int indiceLaptop, indiceElemento;
-        
-        EntradaYSalida.mostrarMensaje("\n----Lista de elementos de la laptop----");
-        tienda.mostrarStockLaptop();
-        indiceLaptop = EntradaYSalida.leerEntero("\n\nDigite opción de la latop: ");
-        indiceElemento = EntradaYSalida.leerEntero("Digite opción del elemento: ");
-        tienda.venderElementoLaptop(indiceLaptop - 1, indiceElemento);
-        EntradaYSalida.mostrarMensaje("¡¡Compra Exitosa!!");
-    }
-     
-     
-
 }

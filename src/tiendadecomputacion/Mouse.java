@@ -1,12 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package tiendadecomputacion;
 
+import java.io.Serializable;
 
-public class Mouse extends Periferico 
+
+public class Mouse extends Periferico implements Serializable
 {
     
 }

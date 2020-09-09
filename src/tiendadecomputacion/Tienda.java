@@ -1,55 +1,62 @@
 package tiendadecomputacion;
 
+
+import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 
-public class Tienda 
+public class Tienda implements Serializable
 {
     private final Producto producto = new Producto();
     private final ArrayList<Producto> listaProductos = new ArrayList<>();
+   
     
-    public void setPeriferico(String descripcion, int cantidadStock, double precioUnitario,String fechaCarga)
+    public void  setPeriferico(String descripcion, int cantidadStock, double precioUnitario,String fecha)
     {  
-       this.listaProductos.add(producto.altaPeriferico(descripcion, cantidadStock,precioUnitario,fechaCarga));   
+        
+       this.listaProductos.add(producto.altaPeriferico(descripcion, cantidadStock,precioUnitario,fecha));
     }
     
     public void setRam(String descripcion, int cantidadStock, double precioUnitario,String marca,
-                                        String tecnologia,String frecuenciaMaxima, int capacidad,String fechaCarga)
+                                        String tecnologia,String frecuenciaMaxima, int capacidad,String fecha)
     { 
        this.listaProductos.add(producto.altaRam(descripcion,cantidadStock,precioUnitario, marca,
-                                                        tecnologia,frecuenciaMaxima,capacidad,fechaCarga));  
+                                                        tecnologia,frecuenciaMaxima,capacidad,fecha));  
     }
     
      public void setProcesador(String descripcion, int cantidadStock, double precioUnitario,
-                                    String fabricante,String modelo,String frecuenciaMaxima,String fechaCarga)
+                                    String fabricante,String modelo,String frecuenciaMaxima,String fecha)
     { 
        this.listaProductos.add(producto.altaProcesador(descripcion,cantidadStock,precioUnitario,
-                                                           fabricante,modelo, frecuenciaMaxima,fechaCarga));  
+                                                           fabricante,modelo, frecuenciaMaxima,fecha));  
     }
      
     public void setDisco(String descripcion, int cantidadStock,double precioUnitario,String marca,
-                                                                        String tipo,int capacidad,String fechaCarga)
+                                                                        String tipo,int capacidad,String fecha)
     { 
        this.listaProductos.add(producto.altaDisco(descripcion,cantidadStock,precioUnitario,marca,
-                                                                                 tipo,capacidad,fechaCarga));  
+                                                                                 tipo,capacidad,fecha));  
     }
       
     public void setPlacaVideo(String descripcion, int cantidadStock, double precioUnitario,String fabricante,
-                                                                          String modelo,int capacidadMemoria,String fechaCarga)
+                                                                          String modelo,int capacidadMemoria,String fecha)
     { 
        this.listaProductos.add(producto.altaPlacaVideo(descripcion,cantidadStock,precioUnitario,fabricante,
-                                                                                  modelo,capacidadMemoria,fechaCarga));  
+                                                                                  modelo,capacidadMemoria,fecha));  
     }
     
     public void setLaptop(String descripcion, int cantidadStock,String marca, String modelo,
-                                                             String tamanioPantalla, double precioUnitario,String fechaCarga)
+                                                             String tamanioPantalla, double precioUnitario,String fecha)
     { 
        this.listaProductos.add(producto.altaLaptop(listaProductos,descripcion, cantidadStock, marca,
-                                                 modelo, tamanioPantalla, precioUnitario,fechaCarga));                               
+                                                 modelo, tamanioPantalla, precioUnitario,fecha));                               
     }
     
-    public void setDesktop(String descripcion,int cantidadStock, double precioUnitario,String fechaCarga)
+    public void setDesktop(String descripcion,int cantidadStock, double precioUnitario,String fecha)
     { 
-       this.listaProductos.add(producto.altaDesktop(listaProductos,descripcion,cantidadStock,precioUnitario,fechaCarga));
+       this.listaProductos.add(producto.altaDesktop(listaProductos,descripcion,cantidadStock,precioUnitario,fecha));
                                  
     }
     public ArrayList<Producto> getListaProductos()
@@ -78,7 +85,7 @@ public class Tienda
                                     +"  ||Stock: "+ listaProductos.get(i).getCantidadStock()
                                     +"  ||Descripcion: "+ listaProductos.get(i).getDescripcion()
                                     +"  ||Precio: $"+ listaProductos.get(i).getPrecioUnitario()
-                                    +"  ||Fecha de carga: "+ listaProductos.get(i).getFechaCarga()
+                                    +"  ||Fecha de carga: "+ listaProductos.get(i).getFecha()
                                     +"  ||Marca:  "+  ram.getMarca()
                                     +"  ||Tecnologia: "+ ram.getTecnologia()
                                     +"  ||Frecuencia maxima:  "+ ram.getFrecuenciaMaxima()
@@ -91,7 +98,7 @@ public class Tienda
                                     +"  ||Stock: "+ listaProductos.get(i).getCantidadStock()
                                     +"  ||Descripcion: "+ listaProductos.get(i).getDescripcion()
                                     +"  ||Precio: $"+ listaProductos.get(i).getPrecioUnitario()
-                                    +"  ||Fecha de carga: "+ listaProductos.get(i).getFechaCarga()
+                                    +"  ||Fecha de carga: "+ listaProductos.get(i).getFecha()
                                     +"  ||Fabricante:  "+ procesador.getfabricante()
                                     +"  ||Modelo: "+ procesador.getModelo()
                                     +"  ||Frecuencia maxima:  "+ procesador.getFrecuenciaMaxima());
@@ -102,7 +109,7 @@ public class Tienda
                                     +"  ||Stock: "+ listaProductos.get(i).getCantidadStock()
                                     +"  ||Descripcion: "+ listaProductos.get(i).getDescripcion()
                                     +"  ||Precio: $"+ listaProductos.get(i).getPrecioUnitario()
-                                    +"  ||Fecha de carga: "+ listaProductos.get(i).getFechaCarga()
+                                    +"  ||Fecha de carga: "+ listaProductos.get(i).getFecha()
                                     +"  ||Marca:  "+ disco.getMarca()
                                     +"  ||Tipo: "+ disco.getTipo()
                                     +"  ||Capacidad:  "+ disco.getCapacidad());
@@ -113,7 +120,7 @@ public class Tienda
                                    +"  ||Stock: "+ listaProductos.get(i).getCantidadStock()
                                    +"  ||Descripcion: "+ listaProductos.get(i).getDescripcion()
                                    +"  ||Precio: $"+ listaProductos.get(i).getPrecioUnitario()
-                                   +"  ||Fecha de carga: "+ listaProductos.get(i).getFechaCarga()
+                                   +"  ||Fecha de carga: "+ listaProductos.get(i).getFecha()
                                    +"  ||Fabricante:  "+ placaVideo.getFabricante()
                                    +"  ||Modelo: "+ placaVideo.getModelo()
                                    +"  ||Capacidad de Memoria:  "+ placaVideo.getCapacidadMemoria());
@@ -123,7 +130,9 @@ public class Tienda
                                    +"  ||Stock: "+ listaProductos.get(i).getCantidadStock()
                                    +"  ||Descripcion: "+ listaProductos.get(i).getDescripcion()
                                    +"  ||Precio: $"+ listaProductos.get(i).getPrecioUnitario()
-                                   +"  ||Fecha de carga: "+ listaProductos.get(i).getFechaCarga());
+                                   +"  ||Fecha de carga : "+ listaProductos.get(i).getFecha());
+
+
 
                     break;
                 case "Teclado":
@@ -131,7 +140,7 @@ public class Tienda
                                    +"  ||Stock: "+ listaProductos.get(i).getCantidadStock()
                                    +"  ||Descripcion: "+ listaProductos.get(i).getDescripcion()
                                    +"  ||Precio: $"+ listaProductos.get(i).getPrecioUnitario()
-                                   +"  ||Fecha de carga: "+ listaProductos.get(i).getFechaCarga());
+                                   +"  ||Fecha de carga: "+ listaProductos.get(i).getFecha());
 
                     break;
                 case "Monitor":
@@ -139,7 +148,7 @@ public class Tienda
                                    +"  ||Stock: "+ listaProductos.get(i).getCantidadStock()
                                    +"  ||Descripcion: "+ listaProductos.get(i).getDescripcion()
                                    +"  ||Precio: $"+ listaProductos.get(i).getPrecioUnitario()
-                                   +"  ||Fecha de carga: "+ listaProductos.get(i).getFechaCarga());
+                                   +"  ||Fecha de carga: "+ listaProductos.get(i).getFecha());
 
                     break;
                 case "Webcam":
@@ -147,7 +156,7 @@ public class Tienda
                                    +"  ||Stock: "+ listaProductos.get(i).getCantidadStock()
                                    +"  ||Descripcion: "+ listaProductos.get(i).getDescripcion()
                                    +"  ||Precio: $"+ listaProductos.get(i).getPrecioUnitario()
-                                   +"  ||Fecha de carga: "+ listaProductos.get(i).getFechaCarga());
+                                   +"  ||Fecha de carga: "+ listaProductos.get(i).getFecha());
 
                     break;
                 case "Laptop":
@@ -159,7 +168,7 @@ public class Tienda
                                    +"  ||Modelo:  "+laptop.getModelo()
                                    +"  ||Tamaño de pantalla :  "+laptop.getTamanioPantalla()
                                    +"  ||Precio: $"+listaProductos.get(i).getPrecioUnitario()
-                                   +"  ||Fecha de carga: "+ listaProductos.get(i).getFechaCarga()
+                                   +"  ||Fecha de carga: "+ listaProductos.get(i).getFecha()
                                    +"  ||Elementos: "+laptop.getDisco().getDescripcion()
                                    +"  ||"+ laptop.getPlacaVideo().getDescripcion()
                                    +"  ||"+ laptop.getRam().getDescripcion() 
@@ -171,7 +180,7 @@ public class Tienda
                                    +"  ||Stock: "+ listaProductos.get(i).getCantidadStock()
                                    +"  ||Descripcion: "+ listaProductos.get(i).getDescripcion()
                                    +"  ||Precio: $"+listaProductos.get(i).getPrecioUnitario()
-                                   +"  ||Fecha de carga: "+ listaProductos.get(i).getFechaCarga()
+                                   +"  ||Fecha de carga: "+ listaProductos.get(i).getFecha()
                                    +"  ||Elementos: "+desktop.getDisco().getDescripcion()
                                    +"  ||"+ desktop.getPlacaVideo().getDescripcion()
                                    +"  ||"+ desktop.getRam().getDescripcion() 
@@ -188,8 +197,10 @@ public class Tienda
        }
        else
        {
+
            EntradaYSalida.mostrarMensaje("\n¡¡Noy hay stock!!\n");
            EntradaYSalida.leerCadena("\nPresione cualquier tecla para salir\n ");
+
        }
        
   }
@@ -210,7 +221,7 @@ public class Tienda
                                    +"  ||Stock: "+ listaProductos.get(i).getCantidadStock()
                                    +"  ||Descripcion: "+ listaProductos.get(i).getDescripcion()
                                    +"  ||Precio: $"+listaProductos.get(i).getPrecioUnitario()
-                                   +"  ||Fecha de carga: "+ listaProductos.get(i).getFechaCarga()
+                                   +"  ||Fecha de carga: "+ listaProductos.get(i).getFecha()
                                    +"  \n"+ "    Elementos: "
                                    +"  \n   1 "+ desktop.getPlacaVideo().getDescripcion()
                                    +"  \n   2 "+ desktop.getRam().getDescripcion() 
@@ -242,7 +253,7 @@ public class Tienda
                                    +"  ||Stock: "+ listaProductos.get(i).getCantidadStock()
                                    +"  ||Descripcion: "+ listaProductos.get(i).getDescripcion()
                                    +"  ||Precio: $"+listaProductos.get(i).getPrecioUnitario()
-                                   +"  ||Fecha de carga: "+ listaProductos.get(i).getFechaCarga()
+                                   +"  ||Fecha de carga: "+ listaProductos.get(i).getFecha()
                                    +"  \n"+ "    Elementos: "
                                    +"  \n     1 "+ laptop.getDisco().getDescripcion()
                                    +"  \n     2 "+ laptop.getPlacaVideo().getDescripcion()
@@ -390,6 +401,98 @@ public class Tienda
             
         }
     }
-    
    
+   
+    
+    public double obtenerPrecioFinal(int indiceProducto)
+    {
+        
+        double precioFinal=0.0;
+
+
+        Producto producto = listaProductos.get(indiceProducto-1);
+        LocalDate fechaHoy = LocalDate.now(); 
+        LocalDate fechaProducto = LocalDate.parse( producto.getFecha(), DateTimeFormatter.ofPattern("dd/MM/yyyy") );
+        Long antiguedadProducto = ChronoUnit.YEARS.between(fechaProducto, fechaHoy);
+        precioFinal = producto.getPrecioUnitario();
+        
+        if ( producto.getCantidadStock() < 10 || antiguedadProducto >=1  )
+        {
+            precioFinal = ( producto.getPrecioUnitario() * 80 / 100);
+        }
+        
+        return precioFinal;
+    }
+    
+   public boolean stockComponentes()
+    {
+        
+        Boolean hayDisco = false;
+        Boolean hayRAM = false;
+        Boolean hayProcesador = false;
+        Boolean hayPlacaVideo = false;
+        
+        for( Producto producto: listaProductos){
+        
+            if ( producto.getCantidadStock() > 0 ){
+                switch( producto.getDescripcion()){
+
+                    case "Disco":
+                        hayDisco = true;
+                        break;
+
+                    case "Ram":
+                        hayRAM = true;
+                        break;
+
+                    case "PlacaVideo":
+                        hayPlacaVideo = true;
+                        break;
+
+                    case "Procesador":
+                        hayProcesador = true;
+                        break;  
+                }
+            }
+        }
+        
+        return hayDisco && hayRAM && hayPlacaVideo && hayProcesador;
+                  
+    }
+   
+    public boolean stockPerifericos()
+    {
+ 
+        Boolean hayTeclado = false;
+        Boolean hayMouse = false;
+        Boolean hayMonitor = false;
+        Boolean hayWebcam = false;
+
+
+
+        
+        for( Producto producto: listaProductos){
+        
+            if ( producto.getCantidadStock() > 0 ){
+                switch( producto.getDescripcion()){
+ 
+                    case "Teclado":
+                        hayTeclado = true;
+                        break;  
+                    case "Mouse":
+                        hayMouse = true;
+                        break; 
+                    case "Monitor":
+                        hayMonitor = true;
+                        break; 
+                     case "Webcam":
+                        hayWebcam = true;
+                        break; 
+                }
+            }
+        }
+        
+        return  hayTeclado && hayMouse && hayMonitor && hayWebcam;
+                  
+    }
 }

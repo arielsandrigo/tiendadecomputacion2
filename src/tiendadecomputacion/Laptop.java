@@ -1,6 +1,8 @@
 package tiendadecomputacion;
 
-public class Laptop extends Computadora
+import java.io.Serializable;
+
+public class Laptop extends Computadora implements Serializable
 {
     private String marca, modelo,tamanioPantalla;
 

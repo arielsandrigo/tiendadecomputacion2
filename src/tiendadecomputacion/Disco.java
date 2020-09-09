@@ -1,6 +1,8 @@
 package tiendadecomputacion;
 
-public class Disco extends Componente
+import java.io.Serializable;
+
+public class Disco extends Componente implements Serializable
 {
     private String marca, tipo;
     int capacidad;

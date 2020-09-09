@@ -1,6 +1,8 @@
 package tiendadecomputacion;
 
-public class Componente extends Producto
+import java.io.Serializable;
+
+public class Componente extends Producto implements Serializable
 {
  
    

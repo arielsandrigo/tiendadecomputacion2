@@ -1,7 +1,9 @@
 package tiendadecomputacion;
 
+import java.io.Serializable;
 
-public class Computadora extends Producto
+
+public class Computadora extends Producto implements Serializable
 {
    
     private Procesador procesador;

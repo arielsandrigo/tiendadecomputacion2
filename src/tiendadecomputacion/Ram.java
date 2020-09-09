@@ -1,6 +1,8 @@
 package tiendadecomputacion;
 
-public class Ram extends Componente
+import java.io.Serializable;
+
+public class Ram extends Componente implements Serializable
 {
     private String marca, tecnologia, frecuenciaMaxima;
     private int capacidad;
